@@ -1,0 +1,91 @@
+curl 'https://stage-api.kulu.com/v1/backoffice/kyc/e7533fb7-5d51-4dec-a113-154595dd4c08' \
+  -H 'accept: */*' \
+  -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' \
+  -H 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVbHRnYzBQMWNlelhqWEl5WkNUenN3MlBDSTdzamVHT1l4NlhqRDBSanR3In0.eyJleHAiOjE3ODA2NzQ5NDMsImlhdCI6MTc0OTc0NjgwMiwiYXV0aF90aW1lIjoxNzQ5NTcwOTQzLCJqdGkiOiJmMjI0MjZlNy01ODA4LTRiMmMtODMzMS1lYjM5ZmRiYmFhZTEiLCJpc3MiOiJodHRwczovL3N0YWdlLXNzby5rdWx1LmNvbS9hdXRoL3JlYWxtcy9rdWx1LWJhY2tvZmZpY2UiLCJhdWQiOiJrdWx1LWJhY2tvZmZpY2Utd2ViIiwic3ViIjoiY2UxMzZhODQtNzZmMy00Y2MyLThhM2YtM2Y1M2JkMTE2MmFhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoia3VsdS1iYWNrb2ZmaWNlLXdlYiIsInNpZCI6IjQ2YTJhYmIyLTYzOWEtNGRlZC04NDI1LTEyZmM0MTIxY2VmYiIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiUFJPRklMRV9PV05FUiIsIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1rdWx1IiwiT1JHQU5JWkFUSU9OX1NFVFRJTkdTX01BTkFHRVIiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkJPX0xPVFRFUklFU19ERVRBSUxTX1ZJRVdFUiIsIkJPX1NVUEVSX0FETUlOIiwiQk9fTE9UVEVSSUVTX0xJU1RfVklFV0VSIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSByZWFsbSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJyZWFsbSI6Imt1bHUtYmFja29mZmljZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImRpdnlhbnNodXNAa3VsdS5jb20iLCJsb2NhbGUiOiJlbiIsImVtYWlsIjoiZGl2eWFuc2h1c0BrdWx1LmNvbSJ9.XGtAiyPQnBokZVyPrRslCZcLVYGYje2Xfq8d0vCLCTcL1qv9kbRN0g4G4IF9-QprTtE1_N3MZr0IVM91mQ2uw62RAbji_Z2j-0B84t5uhcmwF9xYSJU3GtDMvFDQmBOnFpCCVs85rr5lnba6NGcWRm_8h_ItbwCge81r5oZ_u4Lfz3q0U_HAZfLTfIh-qQoQ3iPZyZO8p7XRl8objqQJE7Wr0PdJQVmRdf36QQa3ZwPSQYLSdu0uTt0z_avT73t9fsGLLdPbrG--65EXNK99AUijuuH5W8K9P_wcFqz7ZM1-QtTcc9dEPePrtAdb0FfpTFLL4ltjeCWLqDMHBJDiMQ' \
+  -H 'origin: https://stage-backoffice.kulu.com' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://stage-backoffice.kulu.com/' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
+
+curl 'https://stage-api.kulu.com/v1/backoffice/aml-pep/e7533fb7-5d51-4dec-a113-154595dd4c08?identifierType=kyc' \
+  -H 'accept: */*' \
+  -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' \
+  -H 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVbHRnYzBQMWNlelhqWEl5WkNUenN3MlBDSTdzamVHT1l4NlhqRDBSanR3In0.eyJleHAiOjE3ODA2NzQ5NDMsImlhdCI6MTc0OTc0NjgwMiwiYXV0aF90aW1lIjoxNzQ5NTcwOTQzLCJqdGkiOiJmMjI0MjZlNy01ODA4LTRiMmMtODMzMS1lYjM5ZmRiYmFhZTEiLCJpc3MiOiJodHRwczovL3N0YWdlLXNzby5rdWx1LmNvbS9hdXRoL3JlYWxtcy9rdWx1LWJhY2tvZmZpY2UiLCJhdWQiOiJrdWx1LWJhY2tvZmZpY2Utd2ViIiwic3ViIjoiY2UxMzZhODQtNzZmMy00Y2MyLThhM2YtM2Y1M2JkMTE2MmFhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoia3VsdS1iYWNrb2ZmaWNlLXdlYiIsInNpZCI6IjQ2YTJhYmIyLTYzOWEtNGRlZC04NDI1LTEyZmM0MTIxY2VmYiIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiUFJPRklMRV9PV05FUiIsIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1rdWx1IiwiT1JHQU5JWkFUSU9OX1NFVFRJTkdTX01BTkFHRVIiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkJPX0xPVFRFUklFU19ERVRBSUxTX1ZJRVdFUiIsIkJPX1NVUEVSX0FETUlOIiwiQk9fTE9UVEVSSUVTX0xJU1RfVklFV0VSIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSByZWFsbSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJyZWFsbSI6Imt1bHUtYmFja29mZmljZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImRpdnlhbnNodXNAa3VsdS5jb20iLCJsb2NhbGUiOiJlbiIsImVtYWlsIjoiZGl2eWFuc2h1c0BrdWx1LmNvbSJ9.XGtAiyPQnBokZVyPrRslCZcLVYGYje2Xfq8d0vCLCTcL1qv9kbRN0g4G4IF9-QprTtE1_N3MZr0IVM91mQ2uw62RAbji_Z2j-0B84t5uhcmwF9xYSJU3GtDMvFDQmBOnFpCCVs85rr5lnba6NGcWRm_8h_ItbwCge81r5oZ_u4Lfz3q0U_HAZfLTfIh-qQoQ3iPZyZO8p7XRl8objqQJE7Wr0PdJQVmRdf36QQa3ZwPSQYLSdu0uTt0z_avT73t9fsGLLdPbrG--65EXNK99AUijuuH5W8K9P_wcFqz7ZM1-QtTcc9dEPePrtAdb0FfpTFLL4ltjeCWLqDMHBJDiMQ' \
+  -H 'origin: https://stage-backoffice.kulu.com' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://stage-backoffice.kulu.com/' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
+
+curl 'https://stage-api.kulu.com/v1/backoffice/kyc/e7533fb7-5d51-4dec-a113-154595dd4c08/status' \
+  -X 'PATCH' \
+  -H 'accept: */*' \
+  -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' \
+  -H 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVbHRnYzBQMWNlelhqWEl5WkNUenN3MlBDSTdzamVHT1l4NlhqRDBSanR3In0.eyJleHAiOjE3ODA2NzQ5NDMsImlhdCI6MTc0OTc0NjgwMiwiYXV0aF90aW1lIjoxNzQ5NTcwOTQzLCJqdGkiOiJmMjI0MjZlNy01ODA4LTRiMmMtODMzMS1lYjM5ZmRiYmFhZTEiLCJpc3MiOiJodHRwczovL3N0YWdlLXNzby5rdWx1LmNvbS9hdXRoL3JlYWxtcy9rdWx1LWJhY2tvZmZpY2UiLCJhdWQiOiJrdWx1LWJhY2tvZmZpY2Utd2ViIiwic3ViIjoiY2UxMzZhODQtNzZmMy00Y2MyLThhM2YtM2Y1M2JkMTE2MmFhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoia3VsdS1iYWNrb2ZmaWNlLXdlYiIsInNpZCI6IjQ2YTJhYmIyLTYzOWEtNGRlZC04NDI1LTEyZmM0MTIxY2VmYiIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiUFJPRklMRV9PV05FUiIsIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1rdWx1IiwiT1JHQU5JWkFUSU9OX1NFVFRJTkdTX01BTkFHRVIiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkJPX0xPVFRFUklFU19ERVRBSUxTX1ZJRVdFUiIsIkJPX1NVUEVSX0FETUlOIiwiQk9fTE9UVEVSSUVTX0xJU1RfVklFV0VSIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSByZWFsbSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJyZWFsbSI6Imt1bHUtYmFja29mZmljZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImRpdnlhbnNodXNAa3VsdS5jb20iLCJsb2NhbGUiOiJlbiIsImVtYWlsIjoiZGl2eWFuc2h1c0BrdWx1LmNvbSJ9.XGtAiyPQnBokZVyPrRslCZcLVYGYje2Xfq8d0vCLCTcL1qv9kbRN0g4G4IF9-QprTtE1_N3MZr0IVM91mQ2uw62RAbji_Z2j-0B84t5uhcmwF9xYSJU3GtDMvFDQmBOnFpCCVs85rr5lnba6NGcWRm_8h_ItbwCge81r5oZ_u4Lfz3q0U_HAZfLTfIh-qQoQ3iPZyZO8p7XRl8objqQJE7Wr0PdJQVmRdf36QQa3ZwPSQYLSdu0uTt0z_avT73t9fsGLLdPbrG--65EXNK99AUijuuH5W8K9P_wcFqz7ZM1-QtTcc9dEPePrtAdb0FfpTFLL4ltjeCWLqDMHBJDiMQ' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://stage-backoffice.kulu.com' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://stage-backoffice.kulu.com/' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  --data-raw '{"status":"Approved","reason":"string"}'
+
+
+
+
+
+6
+7
+6 7 3 4 4 6 5
+6 3 4 4 7 6 5
+3
+1 2 1
+1 1 2
+3
+2 2 1
+2 1 2
+4
+3 1 1 3
+1 3 1 3
+5
+5 5 5 3 4
+5 5 3 5 4
+6
+6 3 6 6 2 4
+3 6 6 6 2 4
+
+
+
+
+
+
+curl 'https://stage-api.kulu.com/v1/backoffice/kyc/e7533fb7-5d51-4dec-a113-154595dd4c08' \
+  -H 'accept: */*' \
+  -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' \
+  -H 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVbHRnYzBQMWNlelhqWEl5WkNUenN3MlBDSTdzamVHT1l4NlhqRDBSanR3In0.eyJleHAiOjE3ODA2NzQ5NDMsImlhdCI6MTc0OTc0NjgwMiwiYXV0aF90aW1lIjoxNzQ5NTcwOTQzLCJqdGkiOiJmMjI0MjZlNy01ODA4LTRiMmMtODMzMS1lYjM5ZmRiYmFhZTEiLCJpc3MiOiJodHRwczovL3N0YWdlLXNzby5rdWx1LmNvbS9hdXRoL3JlYWxtcy9rdWx1LWJhY2tvZmZpY2UiLCJhdWQiOiJrdWx1LWJhY2tvZmZpY2Utd2ViIiwic3ViIjoiY2UxMzZhODQtNzZmMy00Y2MyLThhM2YtM2Y1M2JkMTE2MmFhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoia3VsdS1iYWNrb2ZmaWNlLXdlYiIsInNpZCI6IjQ2YTJhYmIyLTYzOWEtNGRlZC04NDI1LTEyZmM0MTIxY2VmYiIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiUFJPRklMRV9PV05FUiIsIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1rdWx1IiwiT1JHQU5JWkFUSU9OX1NFVFRJTkdTX01BTkFHRVIiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkJPX0xPVFRFUklFU19ERVRBSUxTX1ZJRVdFUiIsIkJPX1NVUEVSX0FETUlOIiwiQk9fTE9UVEVSSUVTX0xJU1RfVklFV0VSIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSByZWFsbSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJyZWFsbSI6Imt1bHUtYmFja29mZmljZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImRpdnlhbnNodXNAa3VsdS5jb20iLCJsb2NhbGUiOiJlbiIsImVtYWlsIjoiZGl2eWFuc2h1c0BrdWx1LmNvbSJ9.XGtAiyPQnBokZVyPrRslCZcLVYGYje2Xfq8d0vCLCTcL1qv9kbRN0g4G4IF9-QprTtE1_N3MZr0IVM91mQ2uw62RAbji_Z2j-0B84t5uhcmwF9xYSJU3GtDMvFDQmBOnFpCCVs85rr5lnba6NGcWRm_8h_ItbwCge81r5oZ_u4Lfz3q0U_HAZfLTfIh-qQoQ3iPZyZO8p7XRl8objqQJE7Wr0PdJQVmRdf36QQa3ZwPSQYLSdu0uTt0z_avT73t9fsGLLdPbrG--65EXNK99AUijuuH5W8K9P_wcFqz7ZM1-QtTcc9dEPePrtAdb0FfpTFLL4ltjeCWLqDMHBJDiMQ' \
+  -H 'origin: https://stage-backoffice.kulu.com' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://stage-backoffice.kulu.com/' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'

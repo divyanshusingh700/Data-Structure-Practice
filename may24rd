@@ -1,0 +1,15 @@
+Set<Character>[] rows = new HashSet[9];
+this above statement means `You are creating an array of 9 elements, where each element is a Set<Character>.`
+Set<Character>[] rows = IntStream.range(0, 9)
+        .mapToObj(i -> new HashSet<Character>())
+        .toArray(HashSet[]::new);
+
+Set<Character>[] rows = new HashSet[9];
+Arrays.setAll(rows, i -> new HashSet<>());
+
+Set<Character>[] rows = new Set[] {
+    new HashSet<>(), new HashSet<>(), new HashSet<>(),
+    new HashSet<>(), new HashSet<>(), new HashSet<>(),
+    new HashSet<>(), new HashSet<>(), new HashSet<>()
+};
+

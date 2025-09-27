@@ -1,0 +1,3 @@
+            boolean[] visited = new boolean[n];
+
+think in this way as well

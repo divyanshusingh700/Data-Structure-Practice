@@ -1,0 +1,19 @@
+what is LinkedHashMap 
+Sort a Map by Integer Values
+List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(mp.entrySet());
+sortedEntries.sort(Map.Entry.comparingByValue());
+sortedEntries.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
+
+QuickSelect algorithm
+BucketSort algorithm
+PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>(
+    (a, b) -> Integer.compare(b.getValue(), a.getValue())
+);
+
+for (Map.Entry<Integer, Integer> entry : counter.entrySet()) {
+    heap.offer(entry);
+}
+        int[] res = new int[k];
+        for (int i = 0; i < k; i++) {
+            res[i] = Objects.requireNonNull(heap.poll()).getKey();
+        }

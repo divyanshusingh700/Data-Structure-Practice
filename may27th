@@ -1,0 +1,12 @@
+            List<Integer>[] ans = new ArrayList[dam];
+Integer array of lists
+
+
+// Create order array: [0, 1, 2, ..., n-1]
+Integer[] ord = new Integer[n];
+for (int i = 0; i < n; i++) ord[i] = i;
+
+// Sort indices based on values in 'a' in descending order
+Arrays.sort(ord, (i, j) -> Integer.compare(a[j], a[i])); // stable_sort equivalent
+so Above thing is pretty good, when you have to sort the array according to indices and then indices will take 
+the place according to the rank of elements in array

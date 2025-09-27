@@ -1,0 +1,4 @@
+    // Step 1: Map each number to a list of indices
+    for (int i = left; i < right; i++) {
+        mp.computeIfAbsent(nums[i], k -> new ArrayList<>()).add(i);
+    }

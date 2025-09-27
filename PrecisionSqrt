@@ -1,0 +1,16 @@
+    public class PreciseSqrt {
+        public static BigDecimal sqrt(BigDecimal value, int scale) {
+            BigDecimal two = BigDecimal.valueOf(2);
+            BigDecimal x0 = BigDecimal.ZERO;
+            BigDecimal x1 = new BigDecimal(Math.sqrt(value.doubleValue()));
+            
+            MathContext mc = new MathContext(scale + 5, RoundingMode.HALF_UP);
+
+            while (!x0.equals(x1)) {
+                x0 = x1;
+                x1 = value.divide(x0, mc).add(x0).divide(two, mc);
+            }
+
+            return x1.setScale(scale, RoundingMode.HALF_UP);
+        }
+    }

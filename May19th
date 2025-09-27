@@ -1,0 +1,13 @@
+today I learned about this hack in java
+        Map<Integer, AbstractMap.SimpleEntry<Integer, List<Integer>>> mp = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (mp.containsKey(nums[i])) {
+                AbstractMap.SimpleEntry<Integer, List<Integer>> entry = mp.get(nums[i]);
+                entry.getValue().add(i);
+                mp.put(nums[i], new AbstractMap.SimpleEntry<>(entry.getKey() + 1, entry.getValue()));
+            } else {
+                List<Integer> indices = new ArrayList<>();
+                indices.add(i);
+                mp.put(nums[i], new AbstractMap.SimpleEntry<>(1, indices));
+            }
+        }
