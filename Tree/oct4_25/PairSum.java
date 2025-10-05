@@ -1,3 +1,4 @@
+import java.util.*;
 class Solution {
     HashSet<Integer> set = new HashSet<>();
     boolean findTarget(Node root, int target) {
@@ -8,7 +9,7 @@ class Solution {
     }
 }
 
-class Solution {
+class Solution2 {
     void getInorder(Node root, ArrayList<Integer> list){
         if(root==null) return;
         getInorder(root.left, list);
