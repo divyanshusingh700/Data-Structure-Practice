@@ -1,3 +1,4 @@
+// Given a binary tree, count the number of Single Valued Subtrees. A Single Valued Subtree is one in which all the nodes have same value. 
 class Pair{
     int data;
     boolean same;
