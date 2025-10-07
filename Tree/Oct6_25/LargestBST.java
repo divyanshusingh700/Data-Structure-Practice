@@ -14,6 +14,7 @@ package Oct6_25;
 import java.util.*;
 class Node {
     int data;
+    
     Node left, right;
 
     Node(int x) {
