@@ -21,6 +21,7 @@ class GfG {
         Node ca = lca(root, a, b);
         return bfs(ca,a)+bfs(ca,b);
     }
+    
     Node lca(Node root, int a, int b){
         if(root == null)return root;
         if(root.data == a || root.data==b)return root;
