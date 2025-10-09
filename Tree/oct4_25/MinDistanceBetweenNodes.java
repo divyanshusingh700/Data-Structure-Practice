@@ -1,4 +1,13 @@
 import java.util.*;
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int val) {
+        data = val;
+        left = right = null;
+    }
+}
 class GfG {
     int findDist(Node root, int a, int b) {
         // APPROACH >- We have to calculate the minimum distance so 

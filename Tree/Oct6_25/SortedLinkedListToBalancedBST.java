@@ -1,4 +1,4 @@
-package Oct7_25;
+package Oct6_25;
 import java.util.*;
 class LNode{
     int data;
