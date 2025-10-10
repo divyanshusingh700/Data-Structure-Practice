@@ -21,9 +21,15 @@ class Pair{
 }
 
 class Solution {
-    Map<Integer, ArrayList<Pair>> mp = new HashMap<>();
+
     public ArrayList<ArrayList<Integer>> verticalOrder(Node root) {
-        mp.clear();
+        // Idea is here to get vertical level order sorted data
+        // so first we use DFS and then we sorted the keys
+        // so that we will get in order data from asc
+        // then we sorted on basis of levels
+        // TC goes to O(nlog(n)) for Skewed it will go O(n^2)
+
+        Map<Integer, ArrayList<Pair>> mp = new HashMap<>();
         int val = 0, level=0;
         helper(root, val, level);
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();

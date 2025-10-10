@@ -26,8 +26,8 @@ class Solution {
         // but here we need data in ascending level order
         // so instead sorting the resultant map
         // just traverse in level order we will autmatically get sorted level order data
-
-
+        // TC goes to O(n) Let n = number of nodes, k = number of vertical columns.
+        // TreeMap (sorted columns)	O(n log k)
         if (root == null) return new ArrayList<>();
         Map<Integer, ArrayList<Integer>> mp = new TreeMap<>();
         Queue<Pair> q  = new LinkedList<>();
