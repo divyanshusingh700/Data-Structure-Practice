@@ -1,4 +1,4 @@
-package Oct11_25;
+package Oct10_25;
 
 import java.util.*;
 import java.util.stream.Collectors;
