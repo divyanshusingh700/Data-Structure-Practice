@@ -1,0 +1,195 @@
+[
+    {
+        "name": "359. Logger Rate Limiter",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/logger-rate-limiter",
+            "lintcode": "https://www.lintcode.com/problem/3620"
+        },
+        "difficulty": "easy",
+        "premium": true
+    },
+    {
+        "name": "13. Roman to Integer",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/roman-to-integer"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "1. Two Sum",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/two-sum"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "938. Range Sum of BST",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/range-sum-of-bst"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "844. Backspace String Compare",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/backspace-string-compare"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "20. Valid Parentheses",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/valid-parentheses"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "1207. Unique Number of Occurrences",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/unique-number-of-occurrences"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "1971. Find if Path Exists in Graph",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/find-if-path-exists-in-graph"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "258. Add Digits",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/add-digits"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "1768. Merge Strings Alternately",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/merge-strings-alternately"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "1480. Running Sum of 1d Array",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/running-sum-of-1d-array"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "1672. Richest Customer Wealth",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/richest-customer-wealth"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "2667. Create Hello World Function",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/create-hello-world-function"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "1148. Article Views I",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/article-views-i"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "21. Merge Two Sorted Lists",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/merge-two-sorted-lists"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "136. Single Number",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/single-number"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "35. Search Insert Position",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/search-insert-position"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "283. Move Zeroes",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/move-zeroes"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "104. Maximum Depth of Binary Tree",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/maximum-depth-of-binary-tree"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "14. Longest Common Prefix",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/longest-common-prefix"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "27. Remove Element",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/remove-element"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "88. Merge Sorted Array",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/merge-sorted-array"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "217. Contains Duplicate",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/contains-duplicate"
+        },
+        "difficulty": "easy",
+        "premium": false
+    },
+    {
+        "name": "121. Best Time to Buy and Sell Stock",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock"
+        },
+        "difficulty": "easy",
+        "premium": false
+    }
+]

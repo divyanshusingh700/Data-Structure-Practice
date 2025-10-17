@@ -1,0 +1,195 @@
+[
+    {
+        "name": "2402. Metting Rooms III",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/meeting-rooms-iii"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "2458. Height of Binary Tree After Subtree Removal Queries",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "715. Range Module",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "843. Guess the Word",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/guess-the-word"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "2713. Maximum Strictly Increasing Cells in a Matrix",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "1803. Count Pairs With XOR in a Range",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/count-pairs-with-xor-in-a-range"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "975. Odd Even Jump",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/odd-even-jump"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "759. Employee Free Time",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/employee-free-time",
+            "lintcode": "https://www.lintcode.com/problem/850"
+        },
+        "difficulty": "hard",
+        "premium": true
+    },
+    {
+        "name": "1639. Number of Ways to Form a Target String Given a Dictionary",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "1857. Largest Color Value in a Directed Graph",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/largest-color-value-in-a-directed-graph"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "818. Race Car",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/race-car"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "2407. Longest Increasing Subsequence II",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/longest-increasing-subsequence-ii"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "685. Redundant Connection II",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/redundant-connection-ii"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "68. Text Justification",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/text-justification"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "23. Merge k Sorted Lists",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/merge-k-sorted-lists"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "862. Shortest Subarray with Sum at Least K",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "2448. Minimum Cost to Make Array Equal",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/minimum-cost-to-make-array-equal"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "4. Median of Two Sorted Arrays",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/median-of-two-sorted-arrays"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "52. N-Queens II",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/n-queens-ii"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "329. Longest Increasing Path in a Matrix",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "185. Department Top Three Salaries",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/department-top-three-salaries"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "312. Burst Balloons",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/burst-balloons"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "25. Reverse Nodes in k-Group",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/reverse-nodes-in-k-group"
+        },
+        "difficulty": "hard",
+        "premium": false
+    },
+    {
+        "name": "239. Sliding Window Maximum",
+        "links": {
+            "leetcode": "https://leetcode.com/problems/sliding-window-maximum"
+        },
+        "difficulty": "hard",
+        "premium": false
+    }
+]
