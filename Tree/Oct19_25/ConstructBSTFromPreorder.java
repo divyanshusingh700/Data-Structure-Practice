@@ -50,4 +50,46 @@ public class ConstructBSTFromPreorder {
         root.right = constructUtil(pre, key, max);
         return root;
     }
+
+
+
+    public static Node insertBST(Node root, int key) {
+        if (root == null)return new Node(key);
+        if (root.data > key)
+            root.left = insertBST(root.left, key);
+        else if (root.data < key)
+            root.right = insertBST(root.right, key);
+        return root;
+    }
+    public static Node construct(List<Integer> pre) {
+        Node root = null;
+        for (int key : pre) {
+            root = insertBST(root, key);
+        }
+        return root;
+    }
+
+        public static Node constructUtility(List<Integer> pre,
+                                     int low, int high) {
+        if (low > high)return null;
+        Node root = new Node(pre.get(low));
+
+        if (low == high)
+            return root;
+
+        int i;
+        for (i = low + 1; i <= high; i++) {
+            if (pre.get(i) > root.data)
+                break;
+        }
+
+        root.left = constructUtil(pre, low + 1, i - 1);
+        root.right = constructUtil(pre, i, high);
+
+        return root;
+    }
+
+    public static Node construction(List<Integer> pre) {
+        return constructUtility(pre, 0, pre.size() - 1);
+    }
 }
