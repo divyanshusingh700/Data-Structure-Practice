@@ -1,5 +1,12 @@
 package Oct19_25;
+//Given the root of a binary tree. Check whether it is a BST or not.
 
+// A BST is defined as follows:
+
+// The left subtree of a node contains only nodes with data less than the node's data.
+// The right subtree of a node contains only nodes with data greater than the node's data.
+// Both the left and right subtrees must also be binary search trees.
+// Note: We are considering that BSTs can not contain duplicate Nodes.
 
 import java.util.*; 
 class Node{
@@ -11,7 +18,7 @@ class Node{
         left=null;
         right=null;
     }
-    
+
 }
 
 public class SpecialMaxHeapFromBST {
