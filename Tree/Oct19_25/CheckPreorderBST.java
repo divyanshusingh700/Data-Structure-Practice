@@ -28,4 +28,25 @@ class Solution {
         }
         return true;
     }
+
+    static int canRepresentsBST(int[] arr, int n) {
+        return isValid(arr, 0, n - 1) ? 1 : 0;
+    }
+
+    static boolean isValid(int[] pre, int start, int end) {
+        if (start >= end) return true;
+
+        int root = pre[start];
+
+        int rightStart = start + 1;
+        while (rightStart <= end && pre[rightStart] < root) {
+            rightStart++;
+        }
+
+        for (int i = rightStart; i <= end; i++) {
+            if (pre[i] < root) return false;
+        }
+
+        return isValid(pre, start + 1, rightStart - 1) && isValid(pre, rightStart, end);
+    }
 }
