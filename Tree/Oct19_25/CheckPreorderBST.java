@@ -49,4 +49,20 @@ class Solution {
 
         return isValid(pre, start + 1, rightStart - 1) && isValid(pre, rightStart, end);
     }
+
+    // recursive my approach
+    static boolean bstFromPreorder(int[] pre, int start, int end) {
+        if(start>end)return true;
+        int idx = start+1;
+        while(idx<=end && pre[idx]<pre[start]){ // km walo ko paar kro
+            idx++;
+        }
+        int j = idx; // hm log ab jaad ko encounter kr diye
+        while(j<=end){
+            if(pre[j]<pre[start])return false; // to ab smjh jao jo phle jaada tha, usse chhota nhi milna chahiye
+            j++; // pure array ko iterate maar k check kro
+            // efficient lagane k liye just ye point check kr lo ki bado ka bs cliff bne increasing order me
+        }
+        return bstFromPreorder(pre, start+1, idx-1) && bstFromPreorder(pre, idx, end);
+    }
 }
