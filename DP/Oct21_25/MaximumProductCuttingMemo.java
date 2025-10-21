@@ -1,4 +1,4 @@
-package Oct21_25;
+package DP.Oct21_25;
 import java.util.*;
 public class MaximumProductCuttingMemo {
     // 5 -  1*4 -> 4 can go again to divide and get better value;

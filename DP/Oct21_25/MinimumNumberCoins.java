@@ -1,4 +1,4 @@
-package Oct21_25;
+package DP.Oct21_25;
 import java.util.*;
 
 class Solution {
@@ -23,7 +23,7 @@ class Solution {
     }
 
 
-    
+
     public int findMinDP(int n) {
         int[] dp = new int[n+1];
         int[] coins= {1,2,5,10};

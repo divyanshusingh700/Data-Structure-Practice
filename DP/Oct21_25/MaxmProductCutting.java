@@ -1,4 +1,4 @@
-package Oct21_25;
+package DP.Oct21_25;
 
 public class MaxmProductCutting {
     public int maxProduct(int n) {
