@@ -1,0 +1,53 @@
+So question is we need to find Kth smallest value from BST
+
+
+After listening this I am thinking of Inorder traversal and count till k elements passed and at that point we will get the Kth smallest element
+
+BST
+              
+	So implementing inorder will look like below
+
+class Solution{
+	// we can use 1 global variable to keep track of our element
+	int ourValue = -1;
+	Int k = 0;
+	public int kthSmallest(Node root, int k){
+	//let’s call our helper function to do inorder traversal
+	this.k = k;
+	inorder(root);
+	return ourValue;
+}
+public void inorder(Node root){
+	if(root == null || ourValue!=-1)return;
+	inorder(root.left);
+	this.k–;
+	if(this.k==0){
+		ourValue = root.data;
+		return ;
+}
+inorder(root.right);
+}
+}
+
+Other possible solution can be iterative inorder traversal
+Let’s do that as well using stack
+class Solution{
+	public int kthSmallest(Node root, int k){
+	Stack<Node> st = new Stack<>();
+	Node curr = root;
+	while(!st.isEmpty() || curr!=null){
+			while(curr!=null){
+	st.push(curr);
+	curr = curr.left;
+}
+curr= st.pop();
+k- -;
+if(k==0)return curr.val;
+curr = curr.right;
+}
+return 0;
+}
+
+}
+
+So what other solution do we have 

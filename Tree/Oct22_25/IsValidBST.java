@@ -1,19 +1,19 @@
 package Oct22_25;
 
 //  * Definition for a binary tree node.
-public class TreeNode {
+public class IsValidBST {
     int val;
-    TreeNode left;
-    TreeNode right;
+    IsValidBST left;
+    IsValidBST right;
 
-    TreeNode() {
+    IsValidBST() {
     }
 
-    TreeNode(int val) {
+    IsValidBST(int val) {
         this.val = val;
     }
 
-    TreeNode(int val, TreeNode left, TreeNode right) {
+    IsValidBST(int val, IsValidBST left, IsValidBST right) {
         this.val = val;
         this.left = left;
         this.right = right;
@@ -33,12 +33,12 @@ class Pair {
 }
 
 class CheckBST {
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST(IsValidBST root) {
         Pair ans = helper(root);
         return ans.isBst;
     }
 
-    public Pair helper(TreeNode root) {
+    public Pair helper(IsValidBST root) {
         if (root == null)
             return new Pair();
         Pair left = helper(root.left);
