@@ -34,7 +34,7 @@ class KthLargest {
     // -----------------------------
 
     int[] arr;
-    int k=0;
+    int k;
     public void KthLargestUsingBS(int k, int[] nums) {
         this.arr = new int[k];
         Arrays.fill(arr, Integer.MIN_VALUE);
