@@ -1,0 +1,87 @@
+
+
+
+N = 4
+So this frog can only jump 1, 2 and 3 steps 
+			Start from 0
+       1                                 2                                3
+         1	       2        3           1	       2        3          1	       2        3
+    1 2 3   1 2 3   1 2 3     1 2 3   1 2 3   1 2 3      1 2 3   1 2 3   1 2 3
+
+1 1 1 1    => 
+1 2 1      = > 
+			1 1 2      => 
+			2 1 1
+			2 2
+			3 1
+			1 3
+Brute force solution => call 3 recursive functions calcStep(n-1) calcStep(n-2) calcStep(n-3)
+Base condition will be if n==0 then we can find 1 solution there;
+Another base condition will be to stop it to go below 0 if (n<0) return 0
+
+
+class Solution{
+	public int calcSteps(int n){
+		if(n==0)return 1;
+		if(n<0)return 0;
+		return calcSteps(n-1) + calcSteps(n-2) +calcSteps(n-3);
+}
+public static void Main(String[] args){
+	Scanner sc = new Scanner(System.in);
+	Int n = sc.nextInt();
+	// int n = Integer.parseInt();
+	Solution soln = new Solution();
+	System.out.print(soln.calc(n));
+}
+}
+
+// Let’s use memoization to reduce duplicate counts
+
+
+
+
+
+
+class Solution{
+	int[] memo ;
+	public int countWays(int n){
+		this.memo = new int[n+1];
+		Arrays.fill(memo, -1);
+		return calcSteps(n);
+}
+	public int calcSteps(int n){
+		if(n==0)return 1;
+		if(n<0)return 0;
+		if(memo[n]!=-1)return memo[n];
+		memo[n] = calcSteps(n-1) + calcSteps(n-2) +calcSteps(n-3);
+		return memo[n];
+}
+public static void Main(String[] args){
+	Scanner sc = new Scanner(System.in);
+	Int n = sc.nextInt();
+	// int n = Integer.parseInt();
+	Solution soln = new Solution();
+	System.out.print(soln.calc(n));
+}
+}
+
+Let’s solve this now top down approach, we can use recursion method above to solve this approach using dp
+class Solution{
+	public int countWays(int n){
+		int[] dp = new int[n+1];
+		Arrays.fill(dp, -1);
+		dp[0]=1;dp[1]=1;dp[2]=2;
+		for(int i=3; i<n+1; i++){
+dp[i] = dp[i-1]+dp[i-2]+dp[i-3];
+}
+		return dp[n];
+}
+public static void Main(String[] args){
+	Scanner sc = new Scanner(System.in);
+	Int n = sc.nextInt();
+	// int n = Integer.parseInt();
+	Solution soln = new Solution();
+	System.out.print(soln.calc(n));
+}
+}
+

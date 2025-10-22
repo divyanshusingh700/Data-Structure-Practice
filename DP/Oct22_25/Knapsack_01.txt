@@ -1,0 +1,49 @@
+Knapsack
+
+
+N items - weight and value specific
+and a knapsack with a capacity of W, the task is to put the items in the knapsack such that the sum of weights of the items <= W and the sum of values associated with them is maximized. 
+
+So basically every weight has some value assigned
+Let’s take an example 
+Input: W = 4, val[] = [1, 2, 3, 4 , 5], wt[] = [4, 5, 1, 6 , 7]
+Output: 3
+Explanation: Choose the last item, which weighs 1 unit and has a value of 3.
+Total weight our knapsack can hold is 4
+4 => 1
+5 => 2
+1 => 3 => is the solution we can choose 3 weights of weight 1 
+As this is 01 knapsack we can fill any element only once
+We can go 4 5 1 and again on 4=> 4, 5, 1 and again on 5 => we can go 4,5,1 etc.
+
+If (W<0) return 0;
+Math.max(calcNoOfWeight(arr, idx, w-arr[idx], sm+val[idx]) ,
+calcNoOfWeight(arr, idx, w, sm))
+// So this is brute force solution we can use memoization for more optimized solution
+class Solution {
+	// we can use memoization on maximum weight knapsack can hold
+	int [][] memo;
+	public int knapsack(int[] weight, int[] value, int w){
+		int n = weight.length;
+		this.memo = new int[n+1][w+1];
+		for(int[] row:memo)Arrays.fill(row, -1);
+		return helper(weight, value, w, n);
+} 
+public helper(int[] weight, int[] value, int w, int sum, int n){
+	if(w==0 || n==0)return 0;
+	if(memo[n][w]!=-1)return memo[w];
+	if(wt[n-1]>w){
+memo[n][w] = helper(weight, value, w, n-1);
+return memo[n][w];
+}
+memo[n][w] = Math.max(value[n-1]+helper(weight, value, w-weight[n-1], n-1), helper(weight, value, w, n-1));
+return memo[n][w];
+}
+}
+So how to use memoization
+
+
+
+
+
+
