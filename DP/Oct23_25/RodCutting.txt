@@ -1,0 +1,54 @@
+Rod of length  n inches, and price of size n
+Price[i] denotes the length of piece i
+Maximum valuve could be obtained from cutting the rod
+
+First Example
+price[] = [1, 5, 8, 9, 10, 17, 17, 20]
+Size =  8 -> we can cut 2, 2, 4
+			2 3 3
+			1 4 3
+			1 1 6
+			There will be possibilities of 1-8 size 
+So what i am seeing here we can divide sub problem with less value of n
+So the base case is rod length become 1 it will return piece[0]
+Let’s say length is 5-> 5, 1 4, 2 3, 3 2, 4 1, 1 2 2, 1 3 1, 1 1 3, 2 1 2, 2 2 1, 1 1 2 1, 1 2 1 1, 2 1 1 1, 1 1 1 2, 1 1 1 1 1
+Let’s say length is 4 -> 4, 1 3, 2 2, 3 1, 1 1 2, 1 1 1 1
+Let’s say length is 3 -> 3, 1 2, 2 1, 1 1 1
+Let’s say length is 2 -> 2, 1 1
+What will be the possibility here -> either we increase the index or we don’t every time but we will have our final n gets reduced
+
+// ------------------------------
+So I am thinking of 1 recursive solution with memo
+//// ------------------------------
+class Solution{
+	int len;
+	int memo;
+	public int findMaximumCuts(int[] pieces){
+        int n = pieces.length;
+        memo=new int[n+1];
+        findMax(pieces, 0, n);
+        return memo[n];
+    }
+    public int findMax(int[] pieces, int idx, int n){
+        if(n==0|| idx==0)return 0;
+        if(n>-1 && memo[n]!=-1)return memo[n];
+        memo[n] = Math.max(idx+1<=n?pieces[idx]+findMax(pieces, idx, n-idx-1):0, findMax(pieces, idx+1, n)));
+        return memo[n];
+    }
+}
+// ------------------------------
+// DP solution
+// ------------------------------
+class Solution{
+	public int findMaximumCuts(int[] pieces){
+	int n = pieces.length;
+	int[]dp=new int[n+1];
+	for(int i=1; i<n+1; i++){
+        for(int j=0; j<i; j++){
+            dp[i] = Math.max(dp[i], pieces[i]+dp[i-j-i]);
+        }
+    }
+	return dp[n];
+    }
+}
+

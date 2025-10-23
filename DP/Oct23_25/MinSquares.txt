@@ -1,0 +1,61 @@
+Minimum number which square to particular sum
+
+Ex: 1 => 100 -> 10*10 output is 1
+Ex Input => 6 
+	1*1+2*2+1*1 => output is 3
+Let’s pick more 15 -> 3*3 +6
+28 -> 5*5+3
+37 -> 6*6+1*1
+
+So we found 1 pattern that first find nearest square and then calculate min number require for remainder sum
+
+We can also utilise dp for remainder
+
+Math.sqrt(n) will give nearest answer
+
+We have given n can go from 1 to 10^4
+
+So what i am thinking create a recursive function which will take n as parameter
+
+And then do sqrt of n and pass again n-sqrt(n)^2 and the base condition will be 0 if we reach 0 we return 0
+Else we call it again with adding 1
+
+So let’s implement it
+We first write memoized solution
+Class Solution{
+	int[] memo ;int val = Integer.MAX_VALUE;
+	public int minSquares(){
+	memo = new int[n+1];
+	Arrays.fill(memo, -1);
+	minSqrt(n);
+	Return memo[n]
+}
+	public int minSqrt(n){
+	if(n==0)return 0;
+	if(memo[n]!=-1)return memo[n];
+	for(int i=1; i*i<n+1; i++){
+	val = Math.min(val, 1+minSqrt(n-i*i));
+}
+memo[n] =val;
+	return memo[n];
+}
+}
+Now let’s write DP solution for same
+
+
+Class Solution{
+	public int minSquares(){
+	int[] dp = new int[n+1];
+	Arrays.fill(dp, -1);
+	dp[0]=0;
+	for(int i=1; i<n+1; i++){
+		for(int j=1; j*j<i+1; j++){
+	dp[i] = Math.min(dp[i], 1+dp[i-j*j));
+}
+}
+	return dp[n]
+}
+}
+
+
+

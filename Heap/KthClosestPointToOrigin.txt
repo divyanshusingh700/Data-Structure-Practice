@@ -1,0 +1,48 @@
+So 
+Here question is asking give me k points which is nearest to origin, so 1 solution i thinking here is using heap can easily give me solution in O(nlog(n))
+
+So let’s implement it using min heap
+We will be using pair to keep track of distance according to points
+
+
+class Pair{
+	int[] point;
+ 	float distance;
+	Pair(int[] point, float distance){
+	this.point = point;
+	this.distance = distance;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution{
+	public int[] findKPoints(int[][] points, in k){
+		int len = points.length;
+	PriorityQueue<Pair> pq = new PriorityQueue<>((a,b)-> Double.compare(a.distance , b.distance));
+	for(int i=0; i<len; i++){
+	int[] point = points[i];
+	int val = Math.sqrt(Math.pow(point[0],2)+Math.pow(point[1],2));
+	pq.add(new Pair(point, val);
+}
+
+int[][] ans = new int[k][2];
+for(int i=0; i<k; i++){
+	ans[i] = pq.poll().point;
+}
+return ans;
+}
+}
+
+
+
