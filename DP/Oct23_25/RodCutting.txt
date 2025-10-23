@@ -32,7 +32,7 @@ class Solution{
     public int findMax(int[] pieces, int idx, int n){
         if(n==0|| idx==0)return 0;
         if(n>-1 && memo[n]!=-1)return memo[n];
-        memo[n] = Math.max(idx+1<=n?pieces[idx]+findMax(pieces, idx, n-idx-1):0, findMax(pieces, idx+1, n)));
+        memo[n] = Math.max(idx+1<=n?pieces[idx]+findMax(pieces, idx, n-idx-1):0, findMax(pieces, idx+1, n));
         return memo[n];
     }
 }

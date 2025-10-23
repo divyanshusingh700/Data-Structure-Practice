@@ -1,0 +1,84 @@
+Coin change
+
+
+Given an integer array coins[ ] representing different denominations of currency and an integer sum, find the number of ways you can make sum by using different combinations from coins[ ]. 
+Note: Assume that you have an infinite supply of each type of coin. Therefore, you can use any coin as many times as you want.
+Answers are guaranteed to fit into a 32-bit integer. 
+
+Unbounded knapsack -> 
+
+Input: coins[] = [1, 2, 3], sum = 4
+Output: 4
+
+We can use 1*4 times or 2*2 or 4*1 times or 3*1 + 1*1 times
+
+I just solved 1 knapsack problem that was rod cutting if i am not wrong this is similar
+
+// Recursion naive solution
+
+class Solution{
+	int counter =0;
+	public int findWays(int[] coins, int sum){
+	helper(coins, 0, sum);
+	return counter;
+}
+public void helper(int[] coins, int idx, int sum){
+	if(sum==0){counter++;return ;}
+	if(idx == coins.length || sum<0)return ;
+	if(sum>=coins[idx])helper(coins, idx, sum-coins[idx]);
+	helper(coins, idx+1, sum);
+	return ;
+}
+}
+
+// Memo recursion solution
+class Solution{
+	int memo[][];
+	public int findWays(int[] coins, int sum){
+		memo = new int[sum+1][idx+1];
+		for(int i=0; i<=sum; i++)Arrays.fill(memo[i],-1)
+	return helper(coins, 0, sum);
+}
+public void helper(int[] coins, int idx, int sum){
+	if(sum==0){return 1;}
+	if(idx == coins.length || sum<0)return 0;
+if(memo[sum][idx]!=-1)return memo[sum][idx];
+	int take = 0;
+	if(sum>=coins[idx])take = helper(coins, idx, sum-coins[idx]);
+	int skip = helper(coins, idx+1, sum);
+	memo[sum][idx] = take+skip;
+	return memo[sum][idx];
+}
+}
+
+Now let’s think of dp solution for the same
+
+class Solution{
+	public int findWays(int[] coins, int sum){
+		int n = coins.length;
+		int[][] dp = new int[sum+1][idx+1];
+		for(int i=0; i<n+1; i++)dp[0][j]=1;
+		for(int i=0; i<=sum; i++){
+		for(int j=n-1; j>-1; j--){
+			int take = i>coins[j] ? dp[i-coins[j]][j]:0;
+			int skip = dp[i][j+1];
+			dp[i][j] = take+skip;
+}
+}
+return dp[sum][0];
+}
+}
+
+We fill j from n-1 → 0:
+dp[i][n-1] → last coin, depends only on dp[i - coins[n-1]][n-1] (take) and dp[i][n] (skip)
+
+
+dp[i][n] is our base case, usually 0 for sums > 0
+
+
+Then dp[i][n-2] → now dp[i][n-1] is already filled, so skip value is ready
+
+
+And so on, until dp[i][0]
+
+
