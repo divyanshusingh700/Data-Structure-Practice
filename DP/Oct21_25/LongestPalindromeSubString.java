@@ -11,7 +11,7 @@ public class LongestPalindromeSubString {
             Arrays.fill(dp[i], -1);
             dp[i][i]=1;
         }
-        
+        // Initially 2 length string ka fill kr do
         for(int i=0; i<n-1; i++){
             if(s.charAt(i)==s.charAt(i+1)){
                 dp[i][i+1]=1;
@@ -23,6 +23,8 @@ public class LongestPalindromeSubString {
                 dp[i][i+1]=0;
             }
         }
+
+        // later from 3rd 
         for(int len=3; len<=n;len++){
             for(int i=0; i<=n-len; i++){
                 int j=len+i-1;
@@ -40,7 +42,7 @@ public class LongestPalindromeSubString {
         return s.substring(ansLeft, ansLeft+mx);
     }
 
-        public String getLongestPalCenter(String s) {
+    public String getLongestPalCenter(String s) {
         // code here
         int n = s.length();
         int ansLeft = 0;
@@ -48,7 +50,7 @@ public class LongestPalindromeSubString {
         int mx = Integer.MIN_VALUE;
         for(int center=0; center< (2 * n - 1); center++){
             int left = center/2;
-            int right = left+(center%2);
+            int right = left+(center%2);    
             while(left>=0 && right<n && s.charAt(left)==s.charAt(right)){
                 left--;
                 right++;
