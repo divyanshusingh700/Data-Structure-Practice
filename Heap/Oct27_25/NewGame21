@@ -1,0 +1,73 @@
+class Solution {
+    int maxPts;
+    int k;
+    int n;
+    double[] memo; 
+    public double new21Game(int n, int k, int maxPts) {
+        this.maxPts = maxPts;
+        this.n = n;
+        this.k = k;
+        memo = new double[k+1];
+        Arrays.fill(memo, -1.0);
+        return helper(k);
+    }
+    public double helper(int score){
+        if(score<=0){
+            return score>=(k - n)?1.0:0.0;
+        }
+        if(memo[score]!=-1)return memo[score];
+        double calc = 0.0;
+        for(int i=1; i<=maxPts; i++){
+            calc += helper(score-i);
+        }
+        return memo[score] = (double)calc/maxPts;
+
+    }
+}
+
+class Solution {
+
+    public double new21Game(int n, int k, int maxPts) {
+        double[] dp = new double[n+1];
+        dp[0]=1;
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=maxPts; j++){
+                // so i-j < k stricltly is because then only alice will pick 1 more card, and that will add to our probability
+                if((i-j)>=0 && (i-j) < k) {
+                    dp[i] += (double)dp[i-j]/maxPts;
+                }
+            }
+        }
+        double res = 0;
+        for(int i=k; i<=n; i++){
+            res+=dp[i];
+        }
+        return res;
+    }
+}
+
+
+// optimized approach by saving previous sum in a variable only when maxPts<k 
+
+class Solution {
+
+    public double new21Game(int n, int k, int maxPts) {
+        double[] dp = new double[n+1];
+        dp[0]=1;
+        double probSum = k==0?0:1.0;
+        for(int i=1; i<=n; i++){
+            dp[i] = probSum/maxPts;
+            if(i<k){
+                probSum += dp[i];
+            }
+            if(i>=maxPts && i-maxPts < k){
+                probSum -= dp[i-maxPts];
+            }
+        }
+        double res = 0;
+        for(int i=k; i<=n; i++){
+            res+=dp[i];
+        }
+        return res;
+    }
+}
