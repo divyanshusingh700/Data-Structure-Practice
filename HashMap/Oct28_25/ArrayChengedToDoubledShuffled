@@ -1,0 +1,31 @@
+class Solution {
+    public int[] findOriginalArray(int[] changed) {
+        Map<Integer, Integer> mp = new HashMap<>();
+        // int res = 
+        int n = changed.length;
+        if((n & 1 )== 1)return new int[0];
+        int cntOdd = 0;
+        for(int val: changed){
+            if((val&1) == 1)cntOdd++;
+            mp.put(val, mp.getOrDefault(val, 0)+1);
+        }
+        if(cntOdd > n/2)return new int[0];
+        int[] res = new int[n/2];
+        int idx = 0;
+        Arrays.sort(changed);
+        for(int val: changed){
+            if(mp.get(val)==null)continue;
+            if (mp.get(val) == 0) continue;
+            int dub = val*2;
+
+            if(!mp.containsKey(dub) || mp.get(dub)==0)return new int[0];
+
+            mp.put(val, mp.get(val)-1);
+            mp.put(dub, mp.get(dub)-1);
+
+            if(idx<n/2)res[idx++] = val;
+        }
+        return res;
+    }
+
+}

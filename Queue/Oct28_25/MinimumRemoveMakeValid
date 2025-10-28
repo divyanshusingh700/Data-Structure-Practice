@@ -1,0 +1,25 @@
+class Solution {
+    public String minRemoveToMakeValid(String s) {
+        StringBuilder sb = new StringBuilder();
+        Queue<Integer> q = new LinkedList<>();
+        Set<Integer> li = new HashSet<>();
+        for(int i = 0; i<s.length(); i++){
+            if(s.charAt(i)>='a' && s.charAt(i)<='z')continue;
+            if(s.charAt(i) == '(')q.offer(i);
+            else{
+                if(q.isEmpty())li.add(i);
+                else{
+                    q.poll();
+                }
+            }
+        }
+        while(!q.isEmpty()){
+            li.add(q.poll());
+        }
+        for(int p=0; p<s.length(); p++){
+            if(!li.contains(p))sb.append(s.charAt(p));
+        }
+        return sb.toString();
+
+    }
+}
