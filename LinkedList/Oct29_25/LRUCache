@@ -1,0 +1,173 @@
+
+// Using doubly linked list as this prefers insertion and deletion in O(1) time
+class Node{
+    int key;
+    int val;
+    Node next, prev;
+    Node(int key, int val){
+        this.key = key;
+        this.val = val;
+        this.next = null;this.prev = null;
+    }
+}
+class LRUCache {
+    Map<Integer, Node> mp;
+    int cap;
+    Node left;
+    Node right;
+    public LRUCache(int capacity) {
+        this.cap = capacity;
+        this.mp = new HashMap<>();
+        // We need to link left and right node and all node will be between these two
+        left = new Node(0, 0);
+        right  = new Node(0, 0);
+        left.next = right;
+        right.prev = left;
+    }
+    
+    public int get(int key) {
+        Node node = mp.get(key);
+        if (node == null) return -1;
+        remove(node);
+        insert(node);
+        return node.val;
+    }
+    
+    public void put(int key, int value) {
+        if(mp.get(key)!=null)remove(mp.get(key));
+        Node ins = new Node(key, value);
+        mp.put(key, ins);
+        insert(ins);
+        if(mp.size() > cap ){
+            Node lru = this.left.next;
+            remove(lru);
+            mp.remove(lru.key);
+        }
+        
+    }
+
+    public void remove(Node node){
+        Node prev = node.prev;
+        Node next = node.next;
+        prev.next = next;
+        next.prev = prev;
+    }
+
+    public void insert(Node node){
+        Node prev = this.right.prev;
+        Node next = this.right;
+        prev.next = node;
+        next.prev = node;
+        node.prev = prev;node.next = next;
+    }
+}
+// Lazy deletion using MinHeap
+class Node{
+    int key;
+    int val;
+    Node next, prev;
+    Node(int key, int val){
+        this.key = key;
+        this.val = val;
+        this.next = null;this.prev = null;
+    }
+}
+class LRUCache {
+    Map<Integer, Node> mp;
+    int cap;
+    Node left;
+    Node right;
+    public LRUCache(int capacity) {
+        this.cap = capacity;
+        this.mp = new HashMap<>();
+        // We need to link left and right node and all node will be between these two
+        left = new Node(0, 0);
+        right  = new Node(0, 0);
+        left.next = right;
+        right.prev = left;
+    }
+    
+    public int get(int key) {
+        Node node = mp.get(key);
+        if (node == null) return -1;
+        remove(node);
+        insert(node);
+        return node.val;
+    }
+    
+    public void put(int key, int value) {
+        if(mp.get(key)!=null)remove(mp.get(key));
+        Node ins = new Node(key, value);
+        mp.put(key, ins);
+        insert(ins);
+        if(mp.size() > cap ){
+            Node lru = this.left.next;
+            remove(lru);
+            mp.remove(lru.key);
+        }
+        
+    }
+
+    public void remove(Node node){
+        Node prev = node.prev;
+        Node next = node.next;
+        prev.next = next;
+        next.prev = prev;
+    }
+
+    public void insert(Node node){
+        Node prev = this.right.prev;
+        Node next = this.right;
+        prev.next = node;
+        next.prev = node;
+        node.prev = prev;node.next = next;
+    }
+}
+
+
+// Brute force
+
+class LRUCache {
+    Map<Integer, int[]> mp = new HashMap<>();
+    int use = 0;
+    int cap=0;
+    public LRUCache(int capacity) {
+        cap = capacity;
+    }
+    
+    public int get(int key) {
+        if(mp.containsKey(key)){
+            use++;
+            mp.put(key, new int[]{mp.get(key)[0], use});
+            return mp.get(key)[0];
+        }
+        return -1;
+    }
+    
+    public void put(int key, int value) {
+        use++;
+        if(mp.size() == cap && !mp.containsKey(key)){
+            // remove the key which has lowest use value;
+            // first way is to iterate and find min and remove which is costlier
+            // need to find second way
+            int minKey = 0;
+            int mn = Integer.MAX_VALUE;
+            for(Map.Entry<Integer,int[]> val : mp.entrySet()){
+                if(val.getValue()[1]<mn){
+                    minKey = val.getKey();
+                    mn = val.getValue()[1];
+                }
+            }
+            mp.remove(minKey);
+        }
+        mp.put(key, new int[]{value, use});
+        
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */

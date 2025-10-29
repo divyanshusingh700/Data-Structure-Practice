@@ -1,0 +1,63 @@
+// Fisher–Yates algorithm
+class Solution {
+    int[] nums;
+    Random rand = new Random();
+    public Solution(int[] nums) {
+        this.nums = nums;
+    }
+    
+    public int[] reset() {
+        return nums;
+    }
+    
+    public int[] shuffle() {
+        int n = nums.length;
+        int[] shuffle = new int[n];
+        for(int i=0; i<n; i++){
+            shuffle[i] = nums[i];
+        }
+        for(int i=0; i<n; i++){
+            int random = i + rand.nextInt(n-i);
+            int temp = shuffle[random];
+            shuffle[random] = shuffle[i];
+            shuffle[i] = temp;
+        }
+
+        return shuffle;
+    }
+}
+
+
+
+// Brute force using set
+
+
+class Solution {
+    int[] nums;
+    public Solution(int[] nums) {
+        this.nums = nums;
+    }
+    
+    public int[] reset() {
+        return nums;
+    }
+    
+    public int[] shuffle() {
+        int n = nums.length;
+        int[] shuffle = new int[n];
+        Set<Integer> st = new HashSet<>();
+        int random = -1;
+        st.add(random);
+        for(int i=0; i<n; i++){
+            while(st.contains(random)){
+                // System.out.print(random);
+                random = (int)((Math.random() * (n)));
+            }
+            st.add(random);
+            shuffle[i] = nums[random];
+        }
+        return shuffle;
+        
+
+    }
+}
