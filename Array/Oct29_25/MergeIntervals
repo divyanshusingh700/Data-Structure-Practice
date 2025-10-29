@@ -1,0 +1,24 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        List<int[]> result = new ArrayList<>();
+        Stack<int[]> st = new Stack<>();
+        Arrays.sort(intervals, (a, b)-> Integer.compare(a[1], b[1]));
+        for(int[] row: intervals){
+            st.push(row);
+        }
+        int[] prev = st.pop();
+        while(!st.isEmpty()){
+            int[] curr = st.pop();
+            if(curr[1]<prev[0]){
+                result.add(prev);
+                prev = curr;
+            }else{
+                int[] newComer = {Math.min(prev[0], curr[0]), Math.max(prev[1], curr[1])};
+                prev = newComer;
+            }
+        }
+        result.add(prev);
+        return result.toArray(new int[result.size()][]);
+    }
+
+}

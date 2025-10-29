@@ -1,0 +1,51 @@
+class Solution {
+    public boolean isCompleteTree(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        int level = 0;
+        boolean lnr = false;
+        int prevSize = -1;
+        while(!q.isEmpty()){
+            int size = q.size();
+            boolean nn = false;
+            if(size>0 && prevSize!=-1){
+                if((int) Math.pow(2, level-1) != prevSize)return false;
+            }
+            prevSize = size;
+            for(int i=0; i<size; i++){
+
+                TreeNode node = q.poll();
+                if(nn || lnr){
+                    if(node.left!=null || node.right!=null)return false;
+                }
+                if(node.right==null && node.left==null)nn =true;
+
+                if(node.left==null && node.right!=null)return false;
+                if(node.left!=null && node.right==null)lnr=true;
+                if(node.left!=null)q.offer(node.left);
+                if(node.right!=null)q.offer(node.right);
+            }
+            level++;
+        }
+        return true;
+    }   
+}
+
+
+// clean code just think if we encounter null then we should not encounter null
+class Solution {
+    public boolean isCompleteTree(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        boolean nn = true;
+        while(!q.isEmpty()){
+            TreeNode node = q.poll();
+            if(node==null)nn = false;
+            else{
+                if(!nn)return false;
+                q.offer(node.left);q.offer(node.right);
+            }
+        }
+        return true;
+    }   
+}
