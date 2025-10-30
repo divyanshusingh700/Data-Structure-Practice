@@ -1,0 +1,21 @@
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        int n = nums.length;
+        int[] prefixRem = new int[n];
+        int sm = 0;Map<Integer, Integer> mp =new HashMap<>();
+        for(int i=0; i<n; i++){
+            sm+=nums[i];
+            prefixRem[i] = (sm%k + k)%k;
+            mp.put(prefixRem[i], mp.getOrDefault(prefixRem[i], 0)+1);
+        }
+        int ans = 0;
+        for(Map.Entry<Integer, Integer> entry: mp.entrySet()){
+            int key = entry.getKey();int val = entry.getValue();
+            ans+=((val-1)*val)/2;continue;
+        }
+        // because 0 is giving 1 more sub array which will start from 0th index
+        int valuee = mp.get(0)!=null?mp.get(0):0;
+        return ans + valuee;
+
+    }
+}

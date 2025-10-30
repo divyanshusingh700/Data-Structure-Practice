@@ -1,0 +1,33 @@
+class Solution {
+    int idx;
+    public String decodeString(String s) {
+        return solve(s);
+    }
+    public String solve(String s){
+        StringBuilder sb = new StringBuilder();
+        int num = 0;
+
+        while(idx<s.length()){
+            char ch = s.charAt(idx);
+            if(Character.isDigit(ch)){
+                num = num * 10 + ch-'0';
+                idx++;
+            }else if(ch=='['){
+                idx++;
+                String decoded = solve(s);
+                while(num > 0){
+                    sb.append(decoded);
+                    num--;
+                }
+            }else if(ch==']'){
+                idx++;
+                break;
+            }else{
+                sb.append(ch);
+                idx++;
+            }
+        }
+        return sb.toString();
+
+    }
+}
