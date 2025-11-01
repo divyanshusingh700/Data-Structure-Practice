@@ -1,0 +1,15 @@
+class Solution {
+    public int maxArea(int[] arr) {
+        int i=0; int j=arr.length-1;
+        int mx = Integer.MIN_VALUE;
+        while(i<=j){
+            mx = Math.max(mx, Math.min(arr[i], arr[j])*(j-i));
+            if(arr[i]>arr[j]){
+                j--;
+            }else{
+                i++;
+            }
+        }
+        return mx;
+    }
+}

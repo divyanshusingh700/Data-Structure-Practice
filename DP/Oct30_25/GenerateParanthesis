@@ -1,0 +1,62 @@
+class Solution {
+    List<String> li;
+    public List<String> generateParenthesis(int n) {
+        li = new ArrayList<>();
+        solve("", n, n);
+        return li;
+    }
+    public void solve(String ch, int open, int closed){
+        if(open == 0 && closed == 0){
+            li.add(ch);return;
+        }
+        if(open!=0){
+            String st = ch + "(";
+            solve(st, open-1, closed);
+        }if(open<closed){
+            String st = ch + ")";
+            solve(st, open, closed-1);
+        }
+    }
+}
+
+import java.util.*;
+
+class Solution {
+    static class State {
+        String str;
+        int open, close;
+        State(String s, int o, int c) {
+            str = s;
+            open = o;
+            close = c;
+        }
+    }
+
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        Queue<State> q = new LinkedList<>();
+        q.offer(new State("", 0, 0));
+
+        while (!q.isEmpty()) {
+            State curr = q.poll();
+
+            // ✅ Base condition
+            if (curr.str.length() == 2 * n) {
+                res.add(curr.str);
+                continue;
+            }
+
+            // ✅ Add '(' if possible
+            if (curr.open < n) {
+                q.offer(new State(curr.str + "(", curr.open + 1, curr.close));
+            }
+
+            // ✅ Add ')' only if it remains valid
+            if (curr.close < curr.open) {
+                q.offer(new State(curr.str + ")", curr.open, curr.close + 1));
+            }
+        }
+
+        return res;
+    }
+}
