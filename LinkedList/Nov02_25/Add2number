@@ -1,0 +1,57 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1.val == 0 && l2.val == 0 && l1.next == null && l2.next == null) return l1;
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        getNumber(l1, sb1);
+        getNumber(l2, sb2);
+        String s1 = sb1.toString();
+        String s2 = sb2.toString();
+
+        if (s2.length() > s1.length()) {
+            String temp = s2;
+            s2 = s1;
+            s1 = temp;
+        }
+
+        int n1 = s1.length() - 1;
+        int n2 = s2.length() - 1;
+        int carry = 0;
+        ListNode node = new ListNode(-1);
+        ListNode ansNode = node;
+        while(n1>-1){
+            int valv = 0;
+            if(n2>-1){
+                valv = (s1.charAt(n1)-'0') + (s2.charAt(n2)-'0') + carry;
+                n2--;
+            }else{
+                valv = (s1.charAt(n1)-'0') + carry;
+            }
+            carry = valv/10;
+            node.next = new ListNode(valv%10);
+            node = node.next;
+            n1--;
+        }
+        if(carry>0){
+            node.next = new ListNode(carry);node = node.next;
+        }
+        node.next = null;
+        return ansNode.next;
+    }
+    public void getNumber(ListNode head, StringBuilder sb){
+        if(head == null)return ;
+        getNumber(head.next, sb);
+        sb.append(head.val);
+    }
+}
