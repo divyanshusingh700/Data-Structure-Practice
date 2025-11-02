@@ -1,0 +1,25 @@
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        Arrays.sort(piles);
+        int n = piles.length;
+        int l = 1;
+        int r = piles[n-1];
+        while(l<r){
+            int mid = l+(r-l)/2;
+            int val = calc(piles, mid);
+            if(val > h){
+                l=mid+1;
+            }else{
+                r = mid;
+            }
+        }
+        return l;
+    }
+    public int calc(int[] piles, int target){
+        int ans = 0;
+        for(int val:piles){
+            ans += (int) Math.ceil((double)val/target);
+        }
+        return ans;
+    }
+}

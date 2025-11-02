@@ -1,0 +1,43 @@
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        int n = nums.length;
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+
+        Map<Long, List<Integer>> mp = new HashMap<>();
+        Set<String> striii = new HashSet<>();
+        for(int i=0; i<n; i++){
+            mp.putIfAbsent((long)nums[i], new ArrayList<>());
+            mp.get((long)nums[i]).add(i);
+        }
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++){
+                for(int k=j+1; k<n; k++){
+                    long sum3 = (long) nums[i] + nums[j] + nums[k];
+                    long nextVal = (long) target - sum3;
+                    if(!mp.containsKey(nextVal))continue;
+                    boolean found = false;
+                    for(int idx:mp.get(nextVal)){
+                        if(idx != i && idx != j && idx != k){found =true;break;}
+                    }
+                    if(!found)continue;
+                    List<Long> li = Arrays.asList((long) nums[i], (long) nums[j], (long) nums[k], nextVal);
+                    
+                    Collections.sort(li);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(li.get(0));sb.append(li.get(1));sb.append(li.get(2));sb.append(li.get(3));
+                    if(striii.add(sb.toString())){
+                            res.add(Arrays.asList(
+                            li.get(0).intValue(),
+                            li.get(1).intValue(),
+                            li.get(2).intValue(),
+                            li.get(3).intValue()
+                        ));
+                    }
+                    
+                }
+            }
+        }
+        return res;
+    }
+}
