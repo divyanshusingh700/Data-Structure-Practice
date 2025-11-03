@@ -1,0 +1,44 @@
+// Given an array of meeting time interval objects consisting of start and end times [[start_1,end_1],[start_2,end_2],...] (start_i < end_i), find the minimum number of days required to schedule all meetings without any conflicts.
+
+// Note: (0,8),(8,10) is not considered a conflict at 8.
+
+
+/**
+ * Definition of Interval:
+ * public class Interval {
+ *     public int start, end;
+ *     public Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ * }
+ */
+
+class Solution {
+    public int minMeetingRooms(List<Interval> intervals) {
+        int n = intervals.size();
+        int[] start = new int[n];
+        int[] end = new int[n];
+        for(int p=0; p<n; p++){
+            start[p] = intervals.get(p).start;
+            end[p] = intervals.get(p).end;
+        }
+        Arrays.sort(start);Arrays.sort(end);
+        int cnt = 0;
+        int mx = 0;
+        int i = 0,j=0;
+        while(i<n && j<n){
+            if(start[i]<end[j]){
+                cnt++;
+                i++;
+            }
+            else{
+                cnt--;
+                j++;
+            }
+            mx = Math.max(mx, cnt);
+        }
+        return mx;
+    }
+
+}
