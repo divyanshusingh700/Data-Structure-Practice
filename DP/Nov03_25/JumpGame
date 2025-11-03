@@ -1,0 +1,63 @@
+// dp top dow tabulation
+class Solution {
+    public boolean canJump(int[] nums) {
+        int n = nums.length;
+        boolean[] dp = new boolean[n];
+        dp[0] = true;
+        for(int i=0; i<n; i++){
+            if(!dp[i])continue;
+            for(int j=1; j<=nums[i] && (i+j)<n; j++){
+                dp[i+j] = true;
+            }
+        }
+        return dp[n-1];
+    }
+}
+
+
+
+
+
+
+// recursion + memo
+class Solution {
+    Boolean dp[] ;
+    int maxreach = Integer.MIN_VALUE;
+    public boolean canJump(int[] nums) {
+        dp = new Boolean[nums.length];
+        
+        return helper(nums, 0);
+    }
+    public boolean helper(int[] nums, int idx){
+        if(idx >= nums.length - 1){
+            return true;
+        }
+        if(nums[idx] == 0)return false;
+        if(dp[idx]!=null)return dp[idx];
+        int val = nums[idx];
+        while(val>0){
+            boolean res = helper(nums, idx+val);
+            if(res){
+                return dp[idx] = true;
+            }
+            val--;
+        }
+        return dp[idx] = false;
+    }
+
+
+
+
+
+
+    // Greedy
+    public boolean canJump(int[] nums) {
+        int n = nums.length;
+        int reach = 0;
+        for(int i=0; i<n; i++){
+            if(i>reach)return false;
+            reach = Math.max(reach, i+nums[i]);
+        }
+        return true;
+    }
+}

@@ -1,0 +1,77 @@
+// dp + top down
+class Solution {
+    
+    public int lengthOfLIS(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp,1);
+        int ans = 1;
+        for(int i=1; i<n; i++){
+            for(int j=0; j<i; j++){
+                if(nums[i]>nums[j]){
+                    dp[i] = Math.max(dp[i], 1 + dp[j]);
+                }
+            }
+            ans = Math.max(ans, dp[i]);
+        }
+        return ans;
+    }
+}
+
+// recursive + memo
+class Solution {
+    int[][] memo;
+    public int lengthOfLIS(int[] nums) {
+        int n = nums.length;
+        memo = new int[n][n+1];
+        for(int[] row:memo)Arrays.fill(row, -1);
+        return helper(nums, n-1, n);
+    }
+    public int helper(int[] nums, int idx, int prev){
+        if(idx<0)return 0;
+
+        if(memo[idx][prev] != -1)return memo[idx][prev];
+
+        int take = 0;
+        if(prev==nums.length || nums[idx]<nums[prev]){
+            take = 1 + helper(nums, idx-1, idx);
+        }
+
+        int mani = Math.max(take, helper(nums, idx-1, prev));
+        return memo[idx][prev] = mani;
+
+    }
+}
+
+// O(n(log(n)))
+// Using binary search 
+class Solution {
+    
+    public int lengthOfLIS(int[] nums) {
+        int n = nums.length;
+        List<Integer> li = new ArrayList<>();
+        li.add(nums[0]);
+        for(int i=1; i<n; i++){
+            if(nums[i] > li.get(li.size() - 1)){
+                li.add(nums[i]);
+            }
+            else {
+                int idx = lowerBound(li, nums[i]);
+                li.set( idx, nums[i] );
+            }
+        }
+        return li.size();
+    }
+    public int lowerBound(List<Integer> arr, int val){
+        int l = 0, r = arr.size() - 1;
+        while(l<r){
+            int mid = l + (r - l) / 2;
+            if(arr.get(mid) < val){
+                l = mid + 1;
+            }else{
+                r = mid;
+            }
+        }
+        return l;
+    }
+}
