@@ -1,0 +1,64 @@
+
+// To optimize this, we organize nodes by their depths and precalculate their heights. If a query removes a node, we find the maximum height at that depth, excluding the removed node.
+
+// To streamline further, the maximum height from a given depth can be found using two precomputed values:
+
+// The maximum height at that depth, excluding the current node.
+// The second-highest height at that depth, if the maximum height subtree is removed.
+// Thus, we only need the two largest heights at each depth. We maintain two lists, firstLargestHeight and secondLargestHeight, where each index stores the two largest heights for each depth. We then use DFS to populate these lists, along with each node's depth and height. For each query, if a node’s height matches the largest height at its depth, we return the second-largest height at that level; otherwise, we return the largest height.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    Map<Integer, Integer> heightMap = new HashMap<>();
+    Map<Integer, Integer> levelMap = new HashMap<>();
+    Map<Integer, Integer> heightMx = new HashMap<>();
+    Map<Integer, Integer> heightSecondMx = new HashMap<>();
+    public int[] treeQueries(TreeNode root, int[] queries) {
+        dfs(root, 0);
+        int[] answer = new int[queries.length];
+
+        for(int i=0; i<queries.length; i++){
+            int level = levelMap.get(queries[i]);
+            int height = heightMap.get(queries[i]);
+            int fm = heightMx.get(level);
+            int sm = heightSecondMx.get(level);
+            if(fm!=height)answer[i] = fm + level;
+            else answer[i] = sm + level;
+        }
+        return answer;
+    }
+    public int dfs(TreeNode node, int level){
+        if(node == null)return -1;
+        
+        levelMap.put(node.val, level);
+        int lh = dfs(node.left, level + 1);
+        int rh = dfs(node.right, level + 1);
+
+        int height = Math.max(lh, rh) + 1;
+        heightMap.put(node.val, height);
+
+        if(height > heightMx.getOrDefault(level, -1)){
+            heightSecondMx.put(level, heightMx.getOrDefault(level, -1));
+            heightMx.put(level, height);
+        }else if(height > heightSecondMx.getOrDefault(level, -1)){
+            heightSecondMx.put(level, height);
+        }
+        
+        return height;
+    }
+}
