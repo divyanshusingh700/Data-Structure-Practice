@@ -1,0 +1,255 @@
+class RangeModule {
+    Set<int[]> intervals;
+    public RangeModule() {
+        intervals = new TreeSet<>((a, b) -> {
+            if (a[0] == b[0]) return Integer.compare(a[1], b[1]);
+            return Integer.compare(a[0], b[0]);
+        });
+    }
+    
+    public void addRange(int left, int right) {
+        // Find overlapping intervals and merge
+        List<int[]> toRemove = new ArrayList<>();
+        int newLeft = left, newRight = right;
+
+        Iterator<int[]> it = intervals.iterator();
+        while (it.hasNext()) {
+            int[] curr = it.next();
+            // no overlap — can break early (since sorted)
+            if (curr[1] < left) continue;
+            if (curr[0] > right) break;
+
+            // overlap → merge
+            newLeft = Math.min(newLeft, curr[0]);
+            newRight = Math.max(newRight, curr[1]);
+            toRemove.add(curr);// note we are adding the original ele from set
+        }
+
+        for (int[] rem : toRemove) intervals.remove(rem);
+        intervals.add(new int[]{newLeft, newRight});
+    }
+    
+    public boolean queryRange(int left, int right) {
+        List<int[]> intervalss = new ArrayList<>(intervals);
+        int n = intervals.size();
+        if (n == 0) return false;
+
+        int low = 0, high = n - 1;
+
+        // find rightmost interval whose start <= left
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (intervalss.get(mid)[0] <= left) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        // now 'high' points to interval whose start <= left (or -1)
+        if (high < 0) return false;
+
+        int[] candidate = intervalss.get(high);
+        // Check if this interval fully covers the range
+        return candidate[0] <= left && candidate[1] >= right;
+    }
+    
+    public void removeRange(int left, int right) {
+        Iterator<int[]> it = intervals.iterator();
+        List<int[]> toAdd = new ArrayList<>();
+
+        while (it.hasNext()) {
+            int[] interval = it.next();
+
+            // Case 1: completely outside the removal range → skip
+            if (interval[1] <= left || interval[0] >= right) {
+                continue;
+            }
+
+            // Case 2: full overlap → remove completely
+            if (interval[0] >= left && interval[1] <= right) {
+                it.remove();
+            }
+
+            // Case 3: overlaps on the right → trim the left part
+            else if (interval[0] < left && interval[1] <= right) {
+                it.remove();
+                toAdd.add(new int[]{interval[0], left});
+            }
+
+            // Case 4: overlaps on the left → trim the right part
+            else if (interval[0] >= left && interval[1] > right) {
+                it.remove();
+                toAdd.add(new int[]{right, interval[1]});
+            }
+
+            // Case 5: fully contains the removal range → split into two
+            else if (interval[0] < left && interval[1] > right) {
+                it.remove();
+                toAdd.add(new int[]{interval[0], left});
+                toAdd.add(new int[]{right, interval[1]});
+            }
+        }
+
+        // Add back the trimmed or split intervals
+        for (int[] add : toAdd) {
+            intervals.add(add);
+        }
+    }
+
+}
+
+
+
+
+
+
+// Alternative using functions of tree set
+    public boolean queryRange(int left, int right) {
+        int[] floor = intervalSet.floor(new int[]{left, Integer.MAX_VALUE});
+        if (floor == null) return false;
+
+        // since TreeSet comparator is based on start, we may need to check prev element too
+        if (floor[0] > left) {
+            floor = intervalSet.lower(floor);
+        }
+
+        if (floor == null) return false;
+        return floor[0] <= left && floor[1] >= right;
+    }
+
+
+
+
+
+
+
+    🌳 1. What is a TreeSet in Java?
+
+TreeSet is a sorted set backed by a Red-Black Tree (self-balancing binary search tree).
+
+Key properties:
+
+Keeps elements sorted according to a Comparator or natural order.
+
+Provides logarithmic time (O(log n)) for insert, remove, and search.
+
+Provides navigational methods to find closest elements — this is what you’re using here.
+
+⚙️ 2. The Comparator
+
+In your code:
+
+intervalSet = new TreeSet<>((a, b) -> {
+    if (a[0] == b[0]) return Integer.compare(a[1], b[1]);
+    return Integer.compare(a[0], b[0]);
+});
+
+
+So intervals are sorted by start value (a[0]), and if equal, by end value (a[1]).
+
+That means the TreeSet keeps intervals in increasing order of their start.
+
+Example:
+
+[1,5), [10,20), [25,30)
+
+🔍 3. The queryRange() logic
+
+Now let’s read this method line by line:
+
+int[] floor = intervalSet.floor(new int[]{left, Integer.MAX_VALUE});
+
+➤ floor(E e) meaning:
+
+Returns the greatest element ≤ e according to the set’s ordering.
+
+Here, e = new int[]{left, Integer.MAX_VALUE}
+→ means: find the interval whose start is less than or equal to left.
+
+So if your set is:
+
+[10,20), [30,40)
+
+
+and you call queryRange(15,18)
+floor(new int[]{15, MAX}) will return [10,20) ✅
+
+(because its start 10 ≤ 15, and it’s the closest such interval).
+
+If you call queryRange(35,38)
+then floor will return [30,40) ✅
+
+If you call queryRange(5,8)
+then no interval has start ≤ 5 → returns null.
+
+if (floor == null) return false;
+
+
+✅ If no interval starts before left, clearly range can’t exist.
+
+if (floor[0] > left) {
+    floor = intervalSet.lower(floor);
+}
+
+➤ lower(E e) meaning:
+
+Returns the greatest element strictly less than e.
+
+Here’s why we do this:
+
+The comparator sorts by start, so sometimes floor(new int[]{left, MAX})
+could pick an interval whose start == left, but that interval may not actually contain [left, right) if earlier one does.
+
+Example:
+
+Intervals: [5,15), [20,30)
+Query: left=20, right=25
+
+
+floor(new int[]{20,MAX}) → [20,30) (fine)
+
+But if floor[0] > left (e.g., floor is [25,40) when left=20),
+then we might’ve overshot — we need to check previous interval (lower).
+
+if (floor == null) return false;
+return floor[0] <= left && floor[1] >= right;
+
+
+If we found a valid floor, we just check:
+
+does this interval start before or at left?
+
+and does it end after or at right?
+
+If yes → ✅ The entire query range is covered.
+
+Otherwise → ❌
+
+🧠 4. Other TreeSet / NavigableSet functions (super useful)
+
+Here’s your quick reference table (all O(log n)):
+
+Method	Meaning	Example
+first()	Smallest element	first interval
+last()	Largest element	last interval
+lower(E e)	Greatest element < e	just before
+floor(E e)	Greatest element ≤ e	<=
+ceiling(E e)	Smallest element ≥ e	>=
+higher(E e)	Smallest element > e	just after
+subSet(e1, e2)	Elements between e1 and e2 (exclusive by default)	range search
+headSet(e)	All elements < e	left side
+tailSet(e)	All elements ≥ e	right side
+iterator()	Ascending iterator	in-order traversal
+descendingIterator()	Reverse order	decreasing
+🧩 Example to visualize floor and lower
+
+Let’s say:
+
+TreeSet = [10,20), [30,40), [50,60)
+
+Call	Returns
+floor([25,MAX])	[10,20)
+lower([30,MAX])	[10,20)
+ceiling([25,MAX])	[30,40)
+higher([30,MAX])	[50,60)
