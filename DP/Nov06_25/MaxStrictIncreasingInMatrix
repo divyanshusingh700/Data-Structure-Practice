@@ -1,0 +1,49 @@
+class Solution {
+    public int maxIncreasingCells(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int[] maxRow = new int[n];
+        int[] maxCol = new int[m];
+        List<int[]> sortedVals = new ArrayList<>();
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                sortedVals.add(new int[]{mat[i][j], i, j});
+            }
+        }
+
+        Collections.sort(sortedVals, (a, b) -> Integer.compare(b[0], a[0]));
+        
+        
+        int ans = 1;
+        int i = 0;
+        while(i < sortedVals.size()){
+            int j = i;
+            while (j < sortedVals.size() && sortedVals.get(j)[0] == sortedVals.get(i)[0]) j++;
+
+            if (j - i == 1) {
+                int[] c = sortedVals.get(i);
+                int val = 1 + Math.max(maxRow[c[1]], maxCol[c[2]]);
+                maxRow[c[1]] = Math.max(maxRow[c[1]], val);
+                maxCol[c[2]] = Math.max(maxCol[c[2]], val);
+                ans = Math.max(ans, val);
+            } else {
+                int[] tRow = new int[n];
+                int[] tCol = new int[m];
+
+                for (int k = i; k < j; k++) {
+                    int[] c = sortedVals.get(k);
+                    int val = 1 + Math.max(maxRow[c[1]], maxCol[c[2]]);
+                    tRow[c[1]] = Math.max(tRow[c[1]], val);
+                    tCol[c[2]] = Math.max(tCol[c[2]], val);
+                    ans = Math.max(ans, val);
+                }
+
+                for (int p = 0;p < n; p++) maxRow[p] = Math.max(maxRow[p], tRow[p]);
+                for (int p = 0;p < m; p++) maxCol[p] = Math.max(maxCol[p], tCol[p]);
+            }
+            i = j;
+
+        }
+        return ans;
+    }
+}
