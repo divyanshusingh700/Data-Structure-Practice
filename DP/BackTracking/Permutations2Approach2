@@ -1,0 +1,43 @@
+class Solution {
+    List<List<Integer>> res;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        res = new ArrayList<>();
+        Arrays.sort(nums);
+        helper(nums, 0);
+        return res;
+    }
+    public void helper(int[] nums, int idx){
+        if(idx == nums.length){
+            res.add(Arrays.stream(nums).boxed().toList());return;
+        }
+        if(idx > nums.length)return;
+
+        // basically think of a tree diagram where we have to go iterate 
+        // over all eles because if we skip someone then we might end up 
+        // having small size permutation which is no expected
+
+        //Need to use set in order to track duplicates are only 1 time picked
+        Set<Integer> st = new HashSet<>();
+
+        for(int i = idx; i < nums.length; i++){
+            // Here using map We will check until we reach the point where it can't go below 0 freq
+            if(st.contains(nums[i]))continue; // think of 2,1,1,1 and start at second index at i so first it will swap it self now moving forward it will give same result
+            st.add(nums[i]);
+
+            // do something
+            int temp = nums[i] ;
+            nums[i] = nums[idx];
+            nums[idx] = temp;
+
+            //Explore
+            helper(nums, idx + 1);
+
+            // Backtrack Undo it
+            temp = nums[i];
+            nums[i] = nums[idx];
+            nums[idx] = temp;
+        }
+    }
+}
+
+

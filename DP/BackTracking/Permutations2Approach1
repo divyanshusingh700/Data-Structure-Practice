@@ -1,0 +1,37 @@
+class Solution {
+    List<List<Integer>> res;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        res = new ArrayList<>();
+        Map<Integer, Integer> mp = new HashMap<>();
+        for(int ele: nums)mp.put(ele, mp.getOrDefault(ele, 0) + 1);
+        helper(nums, new ArrayList<>(), mp);
+        return res;
+    }
+    public void helper(int[] nums, List<Integer> curr, Map<Integer, Integer> mp){
+        if(curr.size() == nums.length){
+            res.add(new ArrayList<>(curr));return;
+        }
+        if(curr.size() > nums.length)return;
+
+        // basically think of a tree diagram where we have to go iterate 
+        // over all eles because if we skip someone then we might end up 
+        // having small size permutation which is no expected
+        for(Map.Entry<Integer, Integer> entry: mp.entrySet()){
+            // Here using map We will check until we reach the point where it can't go below 0 freq
+            if(entry.getValue() == 0)continue;
+
+            // do something
+            curr.add(entry.getKey());
+            mp.put(entry.getKey(), mp.get(entry.getKey()) - 1);
+
+            //Explore
+            helper(nums, curr, mp);
+
+            // Backtrack Undo it
+            curr.remove(curr.size() - 1);
+            mp.put(entry.getKey(), mp.get(entry.getKey()) + 1);
+        }
+    }
+}
+
+

@@ -1,0 +1,30 @@
+class Solution {
+    List<List<Integer>> res;
+    public List<List<Integer>> permute(int[] nums) {
+        res = new ArrayList<>();
+        helper(nums, 0);
+        return res;
+    }
+    public void helper(int[] nums, int idx){
+        if(idx == nums.length){
+            res.add(Arrays.stream(nums).boxed().toList());return;
+        }
+        if(idx > nums.length)return;
+
+        // We are using swaps intuition from 0 - n - 1 => 1 - n - 1 => 2 - n - 1 etc.
+        for(int i=idx; i < nums.length; i++){// here we take first element then we again start from 0 and skip 0 because of set and take others
+                // do Swap
+                int temp = nums[i] ;
+                nums[i] = nums[idx];
+                nums[idx] = temp;
+
+                helper(nums, idx + 1);
+
+                // Backtrack Undo swap
+                int temp2 = nums[i] ;
+                nums[i] = nums[idx];
+                nums[idx] = temp2;
+        }
+    }
+}
+
