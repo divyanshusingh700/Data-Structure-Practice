@@ -1,0 +1,32 @@
+class Solution {
+    List<List<Integer>> res;
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        res = new ArrayList<>();
+        Arrays.sort(nums);
+        helper(nums, 0, new ArrayList<>());
+        return res;
+    }
+    public void helper(int[] nums, int idx, List<Integer> curr){
+        if(idx == nums.length){
+            res.add(new ArrayList<>(curr));return;
+        }
+
+        if(idx > nums.length)return;
+
+        // Do something which will be take
+        curr.add(nums[idx]);
+        helper(nums, idx + 1, curr);
+
+        // Skip the duplicates
+        while(idx < nums.length - 1 && nums[idx] == nums[idx + 1]){
+            idx++;
+        }
+
+        // Backtrack 
+        curr.remove(curr.size() - 1);
+
+        // skip the element
+        helper(nums, idx + 1, curr);
+
+    }
+}
