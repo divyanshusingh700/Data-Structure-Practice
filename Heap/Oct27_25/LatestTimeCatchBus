@@ -1,0 +1,25 @@
+class Solution {
+    public int latestTimeCatchTheBus(int[] buses, int[] passengers, int capacity) {
+        PriorityQueue<Integer> pqBuses = new PriorityQueue<>(buses.length);
+        for(int ele: buses)pqBuses.offer(ele);
+        PriorityQueue<Integer> pqPassengers = new PriorityQueue<>(passengers.length);
+        for(int ele: passengers)pqPassengers.offer(ele);
+        Set<Integer> passengerSet = new HashSet<>(Arrays.stream(passengers).boxed().collect(Collectors.toSet()));
+        int prev = 1;
+        int cap = capacity;
+        int busDep = 0;
+        while(!pqBuses.isEmpty()){
+            busDep = pqBuses.poll();
+            cap = capacity;
+            while(pqPassengers.peek()!=null && pqPassengers.peek()<=busDep && cap>0){
+                int val = pqPassengers.poll();
+                if(!passengerSet.contains(val-1))prev = val-1;
+                cap--;
+            }
+        }
+        if(cap>0){
+            if(!passengerSet.contains(busDep))prev=busDep;
+        }
+        return prev;
+    }
+}

@@ -1,0 +1,40 @@
+class Solution {
+    List<String> res;
+    Map<Integer, String> mp;
+    public List<String> letterCombinations(String digits) {
+        mp = new HashMap<>();
+        char ch = 'a';
+        for(int i = 2; i < 10; i++){
+            String st = "";
+            int limit = (i == 7 || i == 9) ? 4:3;
+            for(int j = 0; j < limit; j++){
+                st += ch;
+                ch++;
+            }
+            mp.put(i, st);
+        }
+
+        res = new ArrayList<>();
+        helper(digits, 0, new StringBuilder(""));
+        return res;
+    }
+    public void helper(String digits, int idx, StringBuilder curr){
+        if(idx == digits.length()){
+            if(curr.length() == digits.length())res.add(curr.toString());
+            return ;
+        }
+        for(int i = idx; i < digits.length(); i++){
+            String s = mp.get(digits.charAt(i) - '0');
+            for(int j = 0; j < s.length(); j++){
+                // Do something
+                curr.append(s.charAt(j));
+
+                // explore
+                helper(digits, i + 1, curr);
+
+                // Undo it
+                curr.deleteCharAt(curr.length() - 1);
+            }
+        }
+    }
+}

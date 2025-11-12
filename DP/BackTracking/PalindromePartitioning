@@ -1,0 +1,33 @@
+class Solution {
+    List<List<String>> res;
+    public List<List<String>> partition(String s) {
+        res = new ArrayList<>();
+        helper(s, 0, new ArrayList<>());
+        return res;
+    }
+    public boolean isPalindrome(int i, int j, String s){
+        while(i<j){
+            if(s.charAt(i) == s.charAt(j)){
+                i++;j--;
+            }else return false;
+        }
+        return true;
+    }
+
+    public void helper(String s, int start, List<String> curr){
+        if(start == s.length()){
+            res.add(new ArrayList<>(curr));
+            return ;
+        }
+
+        for(int i = start; i < s.length(); i++){
+            // Do something
+            if(isPalindrome(start, i, s)){
+                curr.add(s.substring(start, i + 1));//Do something
+                helper(s, i + 1, curr);// Explore
+                curr.remove(curr.size() - 1); // Backtrack
+            }
+        }
+    }
+
+}

@@ -1,0 +1,29 @@
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+
+        int l = Arrays.stream(weights).max().getAsInt();
+        int r = 100000001;
+        while(l<r){
+            int mid = l+(r-l)/2;
+            int cameDays = calcMid(weights, mid);
+            if(cameDays <= days){
+                r=mid;
+            }else{
+                l = mid+1;
+            }
+        }
+        return l;
+    }
+    public int calcMid(int[] arr, int weight){
+        int k = 0;
+        int cnt = 0;
+        for(int val:arr){
+            if((k+val) <= weight)k += val;
+            else {
+                k = val;
+                cnt++;
+            }
+        }
+        return cnt+1;
+    }
+}

@@ -1,0 +1,40 @@
+
+
+class Solution {
+    public int[] getOrder(int[][] tsks) {
+        int n = tsks.length;
+        int[][] tasks = new int[tsks.length][3];
+        for(int i=0; i<n; i++){
+            tasks[i][0] = tsks[i][0];
+            tasks[i][1] = tsks[i][1];
+            tasks[i][2] = i;
+        }
+        int[] res = new int[n];
+        Arrays.sort(tasks, 
+            (a,b)-> a[0] == b[0] 
+            ? (a[1] == b[1] ? Integer.compare(a[2], b[2]) : Integer.compare(a[1], b[1]))
+            :Integer.compare(a[0], b[0]));
+
+        int idx = 0; 
+        int j = 0; 
+        long cpuTime = 0;
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)-> a[1]==b[1]?a[2]-b[2]:a[1]-b[1]);
+        while (idx < n) {
+            while (j < n && tasks[j][0] <= cpuTime) {
+                pq.offer(tasks[j]);
+                j++;
+            }
+
+            if (pq.isEmpty()) {
+                // first filling
+                cpuTime = tasks[j][0];
+                continue;
+            }
+
+            int[] curr = pq.poll();
+            res[idx++] = curr[2];
+            cpuTime += curr[1]; // process current task
+        }
+        return res;
+    }
+}
