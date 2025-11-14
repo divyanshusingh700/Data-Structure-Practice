@@ -1,0 +1,72 @@
+class Solution {
+    private class TrieNode{
+        Map<Character, TrieNode> children;
+        boolean endOfWord;
+        public TrieNode(){
+            children = new HashMap<>();
+            endOfWord = false;
+        }
+    }
+    private final TrieNode root = new TrieNode();
+
+    public void insert(String word){
+        TrieNode curr = root;
+        for(int i = 0; i < word.length(); i++){
+            char ch = word.charAt(i);
+            TrieNode node = curr.children.get(ch);
+            if(node == null){
+                node = new TrieNode();
+                curr.children.put(ch, node);
+            }
+            curr = node;
+        }
+        curr.endOfWord = true;
+    }
+
+    List<String> res;
+    public List<String> findWords(char[][] board, String[] words) {
+        res = new ArrayList<>();
+
+        for(String word: words){
+            insert(word);
+        }
+
+        TrieNode curr = root;
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board[0].length; j++){
+                if(curr.children.get(board[i][j]) != null){
+                    generateWords(board, i, j, curr, new StringBuilder());
+                }
+            }
+        }
+
+        return res;
+    }
+
+    public void generateWords(char[][] board, int i, int j, TrieNode curr, StringBuilder word){
+        if(i < 0 || j < 0 || j >= board[0].length || i >= board.length || board[i][j] == '#')return;
+
+        curr = curr.children.get(board[i][j]);
+        if(curr == null) return;
+
+        char temp = board[i][j];
+        word.append(temp);
+
+        if(curr.endOfWord == true){
+            res.add(word.toString());
+            curr.endOfWord = false;
+        }
+
+        board[i][j] = '#';
+
+        // explore 
+        generateWords(board, i + 1, j, curr, word);
+        generateWords(board, i, j + 1, curr, word);
+        generateWords(board, i - 1, j, curr, word);
+        generateWords(board, i, j - 1, curr, word);
+
+        // backTrack
+        board[i][j] = temp;
+        word.deleteCharAt(word.length() - 1);
+    }
+}
