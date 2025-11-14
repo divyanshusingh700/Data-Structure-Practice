@@ -1,0 +1,62 @@
+class Solution {
+
+    private class TrieNode{
+        TrieNode left;
+        TrieNode right;
+        int count;
+    }
+
+    public void insert(TrieNode curr, int val){
+        for(int i = 15; i >= 0; i--){
+            int mask = 1<<i;
+            int a = ( val & mask) > 0 ? 1 : 0;
+            if(a == 0){
+                if(curr.left == null)curr.left = new TrieNode();
+                curr = curr.left;
+            }else{
+                if(curr.right == null)curr.right = new TrieNode();
+                curr = curr.right;
+            }
+            curr.count++;
+        }
+    }
+
+    public int getCount(TrieNode root){
+        return (root == null)?0: root.count;
+    }
+
+    public int query(TrieNode curr, int val, int high, int index){
+        if(curr == null)return 0;
+        if(index == -1)return getCount(curr);
+        
+        int bitV = (val&(1<<index))>0?1:0; //bit on val
+        int bitH = (high&(1<<index))>0?1:0; //bit on high
+
+        if(bitV == 0){
+            if(bitH == 0){
+                return query(curr.left, val, high, index - 1); // 0^0 will be 0 so go left
+            }else{
+                // bitV=0 and bitH=1 0^1 will give 1(which then need to call recursive func) in case of 0 we count all value from left
+                return getCount(curr.left) + query(curr.right, val, high, index - 1); 
+            }
+        }else{
+            if(bitH == 0){
+                return query(curr.right, val, high, index - 1); // because 1 ^ 1 will be 0 so go right 
+            }else{
+                // bitV = 1 and bitH=1 1^1 will give 0 so all right value be counted(because we got 0 when bitV was 1) and do faith on left
+                return query(curr.left, val, high, index - 1) + getCount(curr.right) ;
+            }
+        }
+    }
+
+    public int countPairs(int[] nums, int low, int high) {
+        TrieNode curr = new TrieNode();
+        int count = 0;
+        for(int num: nums){
+            count += query(curr, num, high, 15);
+            count -= query(curr, num, low - 1, 15);
+            insert(curr, num);
+        }
+        return count;
+    }
+}
