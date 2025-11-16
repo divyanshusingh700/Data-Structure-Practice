@@ -1,0 +1,113 @@
+https://leetcode.com/discuss/post/7350826/100-java-interview-killerssssss-by-abhav-9jyr/
+Here’s 100 killer Java questions (no answers) split into 10 themed batches (10 each). Each item is a sharp main question plus a follow-up that forces someone to actually think, not regurgitate. Use these to roast classmates, own vivas, or weaponize in quizzes. 🔥
+
+Batch A — Constructors, Initialization & Object Life-cycle
+    If a class defines only a parameterized constructor, will new Child() compile when Child extends it? — Follow-up: Why does the compiler insert an implicit super() and what must you do instead?
+    What exactly runs first: field initializers, instance initializer blocks, or the constructor? — Follow-up: Show an order where a parent’s initializer interacts with a child’s initializer.
+    If a constructor throws an exception, will finalize() run for that object? — Follow-up: Is the object considered “created” and what are the visibility implications?
+    Can you chain constructors across inheritance with this() and super() simultaneously? — Follow-up: Why must constructor calls be the first statement and what proof does the bytecode give?
+    How does Java create default values for object fields and why aren’t local variables defaulted? — Follow-up: What JVM behavior enforces this difference?
+    If you declare private MyClass() in a class, how can you still create instances? — Follow-up: Give two real patterns that use private constructors and why.
+    When you serialize and deserialize an object, which constructor (if any) runs? — Follow-up: How do readObject() and readResolve() change object identity?
+    If an anonymous inner class captures a constructor parameter, where is that value stored? — Follow-up: How does it affect memory and GC roots?
+    Can an enum have constructors with visibility other than private? — Follow-up: Explain why enum constructors are implicitly private and what happens if you try otherwise.
+    Why aren’t constructors inherited? — Follow-up: How does that influence factory vs subclass design?
+Batch B — Visibility, Access Modifiers & Members
+    If a subclass in another package tries to access a protected member via an instance reference, why might it fail? — Follow-up: Explain the “access through inheritance” nuance with an example.
+    Can a private method be overridden? — Follow-up: What does bytecode show for a private method in parent and child with same signature?
+    What modifiers are implicitly applied to interface fields, and why? — Follow-up: How does that change if the field is a compile-time constant?
+    Why can top-level classes not be declared static? — Follow-up: How would semantics break if top-level static were legal?
+    If a class and its nested static class both declare a private static field with same name, how are they accessed? — Follow-up: How does scoping appear in bytecode?
+    Can you reduce visibility in an overriding method? (e.g., public → protected) — Follow-up: Why would allowing reduction be dangerous for callers?
+    What’s the practical difference between package-private and protected in the same package? — Follow-up: Give a scenario where protected exposes more than package-private.
+    How does final on a class differ semantically from a class without final but with all private constructors? — Follow-up: Which is better for immutability and why?
+    Why are interface methods implicitly public even if you omit the modifier? — Follow-up: How did default and private interface methods change that model?
+    If two classes in same package have fields with identical names, can you access the other’s field directly? — Follow-up: What compiler error or runtime behavior enforces encapsulation?
+Batch C — Methods, Overloading & Overriding
+    If a method is overloaded and overridden across hierarchy, how does the JVM pick which to run at call-time? — Follow-up: Give an example where compile-time overload resolution hides runtime override choice.
+    Can you override a static method with an instance method of same signature in subclass? — Follow-up: What happens if you call the method on a parent reference pointing to child?
+    Why can an overriding method throw fewer checked exceptions but not more? — Follow-up: How would callers break if this rule were removed?
+    If two overloaded methods differ only by primitive widening vs autoboxing, which wins? — Follow-up: Show a call where ambiguity occurs and why compiler rejects it.
+    Can a subclass strengthen the return type of an overridden method? — Follow-up: What’s covariant return and how does it appear in bytecode?
+    Can you overload main() and will JVM ever call the overloaded variant? — Follow-up: How would you intentionally invoke an overloaded main from the real main?
+    If a method is final in a parent, can you overload it in child? — Follow-up: Why is overriding blocked but overloading allowed?
+    Why does Java restrict overriding of static methods but allow hiding? — Follow-up: How does method dispatch differ in both cases?
+    If an interface has a default method and a class implements two interfaces with same default, what must the class do? — Follow-up: Why does the “class wins” rule matter when mixing default and abstract methods?
+    Can you override a method and change its synchronized-ness? — Follow-up: How does synchronization behave with polymorphic calls?
+Batch D — Primitives, Boxing, Generics & Arrays
+    Why can’t you use primitive types as generic parameters? — Follow-up: How does autoboxing/unboxing change behavior and performance at scale?
+    What is type erasure and when does it bite you? — Follow-up: Show a case where List<String> and List<Integer> share the same runtime type and why casts are unsafe.
+    Can you create generic arrays (e.g., new T[10] in generic class)? — Follow-up: Why does Java forbid it and how do you workaround safely?
+    Why is int[] not assignable to Integer[]? — Follow-up: Explain covariance for arrays and its runtime pitfalls.
+    What happens when you mix varargs with generics (List<String>... lists)? — Follow-up: Why does the compiler warn and what’s heap pollution?
+    How does autoboxing affect identity comparisons (==) for wrapper types? — Follow-up: Explain integer caching and where it applies.
+    Why is Arrays.asList() backed by the original array and what consequences follow? — Follow-up: How to get a truly modifiable resizable list from an array?
+    When you write List.of(...), is the result mutable? — Follow-up: Compare List.of() vs Collections.unmodifiableList() in behavior and performance.
+    Can generic type parameters be reified at runtime? — Follow-up: How do Class<T> tokens or TypeToken patterns help?
+    Why can a method return List<? extends Number> but you can’t add to it? — Follow-up: Explain PECS (Producer Extends, Consumer Super) succinctly.
+Batch E — Collections & Maps Deep Traps
+    How does HashMap handle collisions and when does it switch buckets from list → tree? — Follow-up: What performance threshold triggers the tree conversion?
+    Why can HashMap accept one null key but Hashtable cannot? — Follow-up: Why does ConcurrentHashMap disallow nulls entirely?
+    What internally does LinkedHashMap store to maintain insertion or access order? — Follow-up: How can you turn LinkedHashMap into an LRU cache with one constructor flag?
+    How do Iterator.remove() and Collection.remove() differ in fail-fast behavior? — Follow-up: Why is Iterator’s remove safe during iteration?
+    Why does TreeMap require keys to be comparable? — Follow-up: What happens if compareTo and equals are inconsistent?
+    When iterating a HashMap, why might order look deterministic in one run and different in another JVM? — Follow-up: What factors influence hash distribution and ordering?
+    Why is CopyOnWriteArrayList great for reads but terrible for writes? — Follow-up: Where (which use-cases) is it the right choice?
+    Why does Arrays.sort(Object[]) require Comparable and how does Comparator change sort semantics? — Follow-up: How is stability guaranteed (or not) across primitive vs object sorts?
+    What happens if you mutate an object used as a key in a HashMap after insertion? — Follow-up: Why does the key become “lost” and how to design around it?
+    Why is ConcurrentModificationException unchecked? — Follow-up: Does catching it make sense or is it a bug indicator?
+Batch F — Exceptions & Error Handling (killer follow-ups)
+    If both try and finally return values, which is returned? — Follow-up: Explain with mutable objects and why finally can overwrite references.
+    When will finally NOT execute? — Follow-up: Explain System.exit(), thread death, and JVM crash cases.
+    If a catch throws an exception while another exception is being propagated, which exception is visible to the caller? — Follow-up: How does Java chain suppressed exceptions (try-with-resources)?
+    Why are Error and Exception separate subclasses of Throwable? — Follow-up: How should you treat Error in production code?
+    What problems do checked exceptions cause in APIs and how to design better exception hierarchies? — Follow-up: When is a checked exception appropriate vs unchecked?
+    Why is catching Throwable generally a bad idea? — Follow-up: Give a scenario where catching Throwable could break the app (think OutOfMemoryError).
+    How does try-with-resources manage multiple exceptions from close()? — Follow-up: How to retrieve suppressed exceptions and why are they useful?
+    What happens if an exception is thrown in a static initializer? — Follow-up: Can the class be reloaded and what’s the loader’s state?
+    Can you rethrow an exception as-is and still preserve stack trace? — Follow-up: How does throw ex; vs throw new Exception(ex); differ?
+    Why was finalize() deprecated and what should be used instead? — Follow-up: How do Cleaner and try-with-resources replace finalize semantics?
+Batch G — Concurrency, Threads & Synchronization
+    What memory effects does volatile provide and what it does NOT (atomicity)? — Follow-up: Show why volatile int x; x++; is not thread-safe.
+    How does synchronized work at JVM level (monitor enter/exit)? — Follow-up: What performance costs and lock-elision/JIT optimizations exist?
+    What’s the difference between wait(), sleep(), and join()? — Follow-up: Which release and reacquire locks and when?
+    How can you get a deadlock and how to programmatically detect/prevent it? — Follow-up: Show resource ordering and tryLock patterns as fixes.
+    What is happens-before and why is it crucial for safe publication? — Follow-up: Give an example of safe vs unsafe singleton without synchronization.
+    Why are concurrent collections (ConcurrentHashMap, CopyOnWriteArrayList) safer than synchronized wrappers? — Follow-up: Explain how CHM segments/locks or CAS reduce contention.
+    What is a race condition vs a visibility problem vs atomicity bug? — Follow-up: Provide minimal code samples that reproduce each type.
+    How do thread pools manage tasks and thread lifecycle (corePoolSize, maxPoolSize, queue)? — Follow-up: Why RejectedExecutionHandler matters under saturation?
+    What is the purpose of ForkJoinPool and work-stealing? — Follow-up: When to use ForkJoin vs ExecutorService?
+    How do CountDownLatch, CyclicBarrier, Semaphore differ functionally? — Follow-up: Give a use-case for each in coordinating threads.
+Batch H — JVM, Classloading & Memory Model
+    What are the main JVM memory regions (heap, stack, metaspace) and what lives where? — Follow-up: Where are class definitions, interned strings, and static fields stored across versions?
+    Why was PermGen removed and Metaspace introduced? — Follow-up: How does Metaspace sizing differ from PermGen and why does it help classloader-heavy apps?
+    How does the classloader hierarchy work and why can two classes with same name coexist? — Follow-up: Explain parent delegation and custom classloader use-cases (plugins).
+    What triggers a Full GC vs Minor GC and what is the cost of promotion failures? — Follow-up: How do survivor spaces and tenuring threshold affect object lifetime?
+    What does JIT compilation do and how does it decide to inline a method? — Follow-up: When does method complexity or synchronization prevent inlining?
+    How do escape analysis and lock coarsening optimize synchronized blocks? — Follow-up: Give an example where escape analysis eliminates allocation.
+    How do soft, weak, and phantom references interact with GC? — Follow-up: Why can’t you retrieve object from PhantomReference?
+    What is class unloading and when does it happen? — Follow-up: How do strong references from static fields prevent unloading?
+    How does string interning work and when should you intern strings manually? — Follow-up: What are memory/perf trade-offs and where interned strings live?
+    How to interpret a GC log to find memory leaks and promotion storms? — Follow-up: What patterns indicate a leak vs peak usage?
+Batch I — Design, Patterns & API-level Traps
+    Why is immutability preferred for value objects? — Follow-up: How to implement a correct immutable class (defensive copies, final fields, no setters)?
+    When is the Singleton pattern safe and when is it dangerous (with serialization, reflection)? — Follow-up: How to implement a safe enum-based singleton and why it works?
+    What is composition-over-inheritance and a case where inheritance caused brittle code? — Follow-up: Refactor a sample that uses inheritance into composition.
+    How do you design an API that evolves without breaking clients? — Follow-up: Use default methods, builder patterns, and versioning examples.
+    When to throw checked vs unchecked exceptions in library design? — Follow-up: Show how checked exceptions affect call sites and API ergonomics.
+    What are common pitfalls with equals/hashCode/toString implementations? — Follow-up: Demonstrate Liskov-substitution issues when equals is not symmetric across subclasses.
+    How to implement a robust clone or copy constructor strategy? — Follow-up: Why Cloneable is broken and what you should do instead.
+    When using observers/listeners, why prefer weak references for listeners? — Follow-up: Show how listener leaks can keep UI objects alive.
+    What are pitfalls of exposing internal collections via getters? — Follow-up: How to return unmodifiable or defensive copies correctly.
+    How to design for extensibility without opening for breakage? — Follow-up: Use sealed classes, final methods, well-documented extension points.
+Batch J — Misc Advanced Gotchas & Interview Nuggets
+    How does transient affect serialization and what should you mark transient? — Follow-up: Show sensitive-field example and how to reinitialize on deserialization.
+    Why are finalize() semantics dangerous for resource cleanup? — Follow-up: How try-with-resources and Cleaner replace finalize correctly.
+    What does native mean on a method and how does JNI impact safety? — Follow-up: Why native code can bypass Java safety and how to mitigate risks.
+    How do annotations work at runtime vs compile-time? — Follow-up: How to create and use a custom annotation with runtime retention and reflection.
+    What is method handle / invokedynamic and why did Java add it? — Follow-up: How does it enable dynamic language support on the JVM?
+    Why is StringBuilder not thread-safe while StringBuffer is? — Follow-up: When would you actually choose StringBuffer today?
+    How can reflection break encapsulation and how to guard against it? — Follow-up: What security manager or module-system measures restrict reflection?
+    How do modules (JPMS) change class visibility compared to packages? — Follow-up: Why module boundaries matter for large systems and encapsulation?
+    What does @FunctionalInterface enforce and what doesn’t it enforce? — Follow-up: How do default methods in functional interfaces interact with lambdas?
+    Give one micro-optimization that the JVM makes which might surprise Java programmers. — Follow-up: Explain the trade-offs and why trusting the JVM’s optimizer is often better than micro-tweaks.

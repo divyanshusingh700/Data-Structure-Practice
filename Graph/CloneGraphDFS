@@ -1,0 +1,43 @@
+
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> neighbors;
+    public Node() {
+        val = 0;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val) {
+        val = _val;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val, ArrayList<Node> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+}
+*/
+// BFS Solution
+class Solution {
+    
+    public Node cloneGraph(Node node) {
+        if(node == null)return null;// base case
+
+        Node[] cloned = new Node[101];
+
+        return dfs(cloned, node);
+    }
+
+    public Node dfs(Node[] cloned, Node node){
+        if(cloned[node.val] != null)return cloned[node.val]; // visited part
+
+        cloned[node.val] = new Node(node.val);
+
+        for(Node neighbor: node.neighbors){
+            cloned[node.val].neighbors.add(dfs(cloned, neighbor));
+        }
+
+        return cloned[node.val];
+    }
+}
