@@ -1,0 +1,48 @@
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> adj = new ArrayList<>();
+
+        for(int i = 0;  i < numCourses; i++){
+            adj.add(new ArrayList<>());
+        }
+
+        for(int[] pre: prerequisites){
+            int course = pre[0];
+            int prereq = pre[1];
+            adj.get(prereq).add(course);
+        }
+
+        return topoSort(numCourses, adj);
+    }
+
+    public boolean topoSort(int numNodes, List<List<Integer>> adj){
+        boolean[] visited = new boolean[numNodes];
+        boolean[] path = new boolean[numNodes];
+        Stack<Integer> stack = new Stack<>();
+
+        for(int i = 0;  i < numNodes; i++){
+            if(!visited[i]){
+                if(!dfs(i, adj, visited, path, stack)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean dfs(int node, List<List<Integer>> adj, boolean[] visited, boolean[] path, Stack<Integer> stack){
+        path[node] = true;
+        visited[node] = true;
+
+        for(int nei: adj.get(node)){
+            if(!visited[nei]){
+                if(!dfs(nei, adj, visited, path, stack))return false;
+            }else if(path[nei]){
+                return false;
+            }
+        }
+        path[node] = false;
+        stack.push(node);
+        return true;
+    }
+}
