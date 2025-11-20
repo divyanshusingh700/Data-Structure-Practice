@@ -1,0 +1,9 @@
+Setup done once per suite:
+
+Start server / Docker containers
+
+DB connection / environment setup
+
+Load config
+
+Start reporting engines (Allure, Extent)

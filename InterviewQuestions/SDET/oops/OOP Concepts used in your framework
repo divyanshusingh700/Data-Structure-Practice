@@ -1,0 +1,18 @@
+Encapsulation → API client class hides raw HTTP logic
+Inheritance → BaseTest class reused across suites
+Polymorphism → AuthStrategy interface with multiple implementations (API key, token)
+
+Explain Polymorphism + Overloading + Overriding
+
+Polymorphism: Same method name, different behavior based on object.
+
+Overloading (Compile-time):
+
+void sum(int a) {}
+void sum(int a, int b) {}
+
+
+Overriding (Runtime):
+
+class A { void show(){} }
+class B extends A { void show(){} }

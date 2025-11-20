@@ -1,0 +1,13 @@
+Use @Ignore or @Wip
+
+Or tag and exclude from runner
+
+Example:
+
+@skip
+Scenario: Skip this test
+
+
+Runner:
+
+tags = "not @skip"

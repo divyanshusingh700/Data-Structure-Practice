@@ -1,0 +1,152 @@
+1️⃣ What do you understand about Agile Methodology?
+
+Agile is an iterative development approach where work is delivered in small increments (sprints), allowing continuous feedback, faster releases, and quick adaptation to change.
+
+→ Focuses on collaboration, customer feedback, and incremental delivery.
+
+2️⃣ What are the different types of Performance Testing?
+
+Load Testing → normal user load
+
+Stress Testing → beyond capacity
+
+Spike Testing → sudden increase in load
+
+Endurance/Soak Testing → long duration
+
+Scalability Testing → increasing resource capacity
+
+Volume Testing → heavy data loads
+
+3️⃣ What is Ad-hoc Testing?
+
+Unstructured testing without test cases where testers randomly test the application based on intuition and experience.
+
+→ Useful for finding unexpected defects quickly.
+
+4️⃣ Write 3 negative test cases for a credit card application form.
+
+Enter expired card: → Expect "Card Expired" error
+
+Enter alphanumeric card number: → Expect validation error
+
+Leave CVV blank and submit: → Expect "CVV required"
+
+5️⃣ Regression Testing vs Retesting
+Retesting	Regression Testing
+Verify fixed defect works	Verify surrounding areas are not broken
+Focused on specific bug fix	Checks entire impacted module
+Mandatory	Depends on change impact
+6️⃣ What is RTM (Requirement Traceability Matrix)?
+
+A document mapping requirements → test cases → defects to ensure complete coverage.
+
+→ Helps confirm nothing is missed.
+
+7️⃣ Entry and Exit Criteria in a Test Plan
+
+Entry Criteria:
+
+Requirements finalized
+
+Test environment ready
+
+Test data prepared
+
+Exit Criteria:
+
+All critical test cases executed
+
+No high-severity bugs open
+
+Test summary/report completed
+
+8️⃣ Black Box Testing Techniques
+
+Equivalence Partitioning
+
+Boundary Value Analysis
+
+Decision Table Testing
+
+State Transition Testing
+
+Error Guessing
+
+Use Case Testing
+
+9️⃣ How do you pass data to Selenium scripts?
+
+Through Excel/CSV (Apache POI)
+
+Properties files / JSON
+
+Database
+
+DataProvider in TestNG
+
+Environment variables
+
+Cucumber Examples/Table
+
+Example (TestNG DataProvider):
+
+@DataProvider
+public Object[][] data() {
+    return new Object[][]{{"user1","pass1"}, {"user2","pass2"}};
+}
+
+🔟 Difference between Agile and Waterfall Model
+Agile	Waterfall
+Iterative, incremental	Linear, sequential
+Changes welcomed	Changes costly
+Continuous delivery	Delivery at end
+Customer collaboration	Document-driven
+1️⃣1️⃣ Hierarchy of TestNG Annotations
+
+Execution Order:
+
+@BeforeSuite
+@BeforeTest
+@BeforeClass
+@BeforeMethod
+@Test
+@AfterMethod
+@AfterClass
+@AfterTest
+@AfterSuite
+
+1️⃣2️⃣ Regression Testing approach (Manual vs Automation)
+
+Manual:
+
+Run selected regression scenarios manually
+
+Time-consuming, good for small releases
+
+Automation:
+
+Execute regression suite on every release/PR
+
+Faster, repeatable, stable
+
+→ Ideal approach: automate stable, repetitive scenarios + manually test new or UX-heavy flows.
+
+1️⃣3️⃣ If manual takes 10 min and automation also takes 10 min, which do you choose?
+
+Prefer automation.
+
+Why?
+
+Can be reused multiple times
+
+Useful for future sprints & regressions
+
+Can be run in CI/CD
+
+Saves time long-term
+
+Interview sentence:
+
+Even if initial run time is same, 
+automation is beneficial in repeated cycles because ROI increases over time.

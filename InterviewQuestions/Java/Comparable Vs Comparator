@@ -1,0 +1,6 @@
+Comparable defines a class's "natural" or default ordering, 
+allowing objects of that class to be compared to one another using the compareTo() method 
+within the class itself. In contrast, Comparator defines a separate, 
+custom sorting logic that can be applied to objects without modifying the class, 
+using the compare() method from an external class. Comparable provides a single sorting sequence, 
+while Comparator allows for multiple sorting sequences

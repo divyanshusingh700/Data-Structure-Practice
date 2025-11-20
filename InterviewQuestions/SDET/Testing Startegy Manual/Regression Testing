@@ -1,0 +1,5 @@
+For regression, I don’t just randomly pick tests.
+First, I look at what changed—code diffs, affected modules, and user stories. I include all tests around those areas.
+Second, I always run core business flows like login and payment, even if they weren’t touched, because breaking them is very costly.
+Third, I add tests for integration points and past bug-prone areas, since they tend to break again.
+If we’re short on time, I use risk-based prioritisation: high-impact and high-frequency paths first. Most of this pack is automated so we can run it reliably in CI.
