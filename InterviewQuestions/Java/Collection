@@ -1,0 +1,4 @@
+A framework that provides data structures like List, Set, Map and methods to store, 
+manipulate and retrieve data.
+
+Examples: ArrayList, HashSet, HashMap.

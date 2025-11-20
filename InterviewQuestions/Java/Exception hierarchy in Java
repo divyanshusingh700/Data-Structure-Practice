@@ -1,0 +1,5 @@
+Throwable
+ ├── Exception
+ │    ├── Checked (IOException, SQLException)
+ │    └── Unchecked (RuntimeException → NPE, AIOOBE)
+ └── Error (OutOfMemoryError, StackOverflowError)

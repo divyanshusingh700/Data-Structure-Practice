@@ -1,0 +1,7 @@
+The main difference is that ArrayList uses a dynamic array, 
+providing fast random access (\(O(1)\) time for get(index)), 
+but is slow for insertions/deletions in the middle (\(O(n)\)). 
+LinkedList uses a doubly linked list, 
+making middle insertions/deletions very fast (\(O(1)\) if you have a reference to the node), 
+but slower for random access (\(O(n)\)) 
+because it must traverse the list
