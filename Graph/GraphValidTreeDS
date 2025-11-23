@@ -1,0 +1,94 @@
+class Solution {
+    class DisjointSet{
+
+        private Map<Long, Node> map = new HashMap<>();
+
+        class Node{
+            long data;
+            Node parent;
+            int rank;
+        }
+        // create a set with one element
+        public void makeSet(long data){
+            Node node = new Node();
+            node.data = data;
+            node.rank = 0;
+            node.parent = node;
+            map.put(data, node);
+        }
+        /**
+        * Combines two sets together to one.
+        * Does union by rank
+        *
+        * @return true if data1 and data2 are in different set before union else false.
+        */
+        public boolean union(long data1, long data2){
+            Node node1 = map.get(data1);
+            Node node2 = map.get(data2);
+
+            Node parent1 = findSet(node1);
+            Node parent2 = findSet(node2);
+            
+            //if they are part of same set do nothing
+            if(parent1.data == parent2.data)return false;
+
+            //else whoever's rank is higher becomes parent of other
+            if(parent1.rank >= parent2.rank){
+                parent1.rank = (parent1.rank == parent2.rank)?parent1.rank + 1 : parent1.rank;
+                parent2.parent = parent1;
+            }else{
+                parent1.parent = parent2;
+            }
+            return true;
+        }
+
+        /**
+        * Finds the representative of this set
+        */
+        public long findSet(long data){
+            return findSet(map.get(data)).data;
+        } 
+
+        /**
+        * Find the representative recursively and does path
+        * compression as well.
+        */
+        public Node findSet(Node node){
+            Node parent = node.parent;
+            if(parent == node){
+                return parent;
+            }
+
+            node.parent = findSet(node.parent);
+            return node.parent;
+        }
+    }
+    public boolean validTree(int n, int[][] edges) {
+        if(edges.length != n - 1)return false;
+        DisjointSet ds = new DisjointSet();
+
+        for(int i = 0; i < n; i++){
+            ds.makeSet((long)i);
+        }
+
+        for(int[] uv: edges){
+            if(!ds.union((long)uv[0], (long)uv[1]))return false;
+        }
+
+        return true;
+    }
+}
+
+
+
+Complexity Analysis
+Time complexity: 
+O(Eα(n))
+O(Eα(n))
+Space complexity: 
+O(n)
+O(n)
+
+n is the number of elements in the input
+E is the number of edges
+$\alpha(n)$ is the inverse Ackermann function, which is very slow-growing and practically constant for all realistic input sizes.
