@@ -1,0 +1,77 @@
+class Solution {
+    class Pair{
+        char[] str;
+        int len;
+    }
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Queue<Pair> q = new LinkedList<>();
+        char[] chArr = beginWord.toCharArray();
+        Pair ini = new Pair();
+        ini.str = chArr;
+        ini.len = 1;
+        q.offer(ini);
+        Set<String> words = new HashSet<>(wordList);
+        
+        while(!q.isEmpty()){
+            Pair pop = q.poll();
+            char[] popChars = pop.str;
+            for(int i = 0; i < popChars.length; i++){
+                char original = popChars[i];
+                for(int j = 97; j <= 122; j++){
+                    char ch = (char)j;
+                    if(original != ch){
+                        popChars[i] = ch;
+                        String check = new String(popChars);
+                        if(words.contains(check)){
+                            if(check.equals(endWord))return pop.len + 1;
+                            Pair toPush = new Pair();
+                            toPush.str = check.toCharArray();
+                            toPush.len = pop.len + 1;
+                            q.offer(toPush);
+                            words.remove(check);
+                        }
+                    }
+                }
+                popChars[i] = original;
+            }
+
+        }
+        return 0;
+    }
+}
+
+
+
+
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Queue<String> q = new LinkedList<>();
+        q.offer(beginWord);
+        Set<String> words = new HashSet<>(wordList);
+        if(!words.contains(endWord))return 0;
+        int steps = 1;
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int len = 0; len < size; len++){
+                String word = q.poll();
+                if(word.equals(endWord))return steps;
+                char[] popChars = word.toCharArray();
+                for(int i = 0; i < popChars.length; i++){
+                    char original = popChars[i];
+                    for(char c = 'a'; c <= 'z'; c++){
+                        if(original == c)continue;
+                        popChars[i] = c;
+                        String check = new String(popChars);
+                        if(words.contains(check)){
+                            q.offer(check);
+                            words.remove(check);
+                        }
+                    }
+                    popChars[i] = original;
+                }
+            }
+            steps++;
+        }
+        return 0;
+    }
+}
