@@ -1,0 +1,39 @@
+class Solution {
+
+    int answer = Integer.MAX_VALUE;
+
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Set<String> dict = new HashSet<>(wordList);
+        if (!dict.contains(endWord)) return 0;
+
+        dfs(beginWord, endWord, dict, 1, new HashSet<>());
+
+        return answer == Integer.MAX_VALUE ? 0 : answer;
+    }
+
+    private void dfs(String word, String end, Set<String> dict, int steps, Set<String> visited) {
+        if (word.equals(end)) {
+            answer = Math.min(answer, steps);
+            return;
+        }
+
+        visited.add(word);
+
+        for (String next : dict) {
+            if (!visited.contains(next) && isOneDiff(word, next)) {
+                dfs(next, end, dict, steps + 1, visited);
+            }
+        }
+
+        visited.remove(word);
+    }
+
+    private boolean isOneDiff(String a, String b) {
+        int diff = 0;
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) != b.charAt(i)) diff++;
+            if (diff > 1) return false;
+        }
+        return diff == 1;
+    }
+}
