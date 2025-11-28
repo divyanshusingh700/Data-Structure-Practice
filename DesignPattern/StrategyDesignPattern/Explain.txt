@@ -1,0 +1,108 @@
+When to use Strategy
+    1.When you have multiple variants of an algorithm and want to choose one at runtime.
+    2.When you want to avoid if-else or switch chains for algorithm selection.
+    3.When algorithms may change independently (open/closed principle).
+    4.When you want to test algorithms in isolation.
+
+Real Java SDK examples that use Strategy-like pattern
+    These are popular, interview-ready examples where Java uses the Strategy idea (encapsulate behavior in an object):
+        1.java.util.Comparator<T> used by Collections.sort / Arrays.sort
+            a.Clients (sorting algorithms) accept a Comparator that defines comparison behavior.
+            b.Different Comparator implementations (by age, by name, reverse order) are strategies.
+            c.Example usage: Collections.sort(list, Comparator.comparing(Person::getName)).
+            d.java.util.concurrent.ThreadPoolExecutor + RejectedExecutionHandler
+
+        2.RejectedExecutionHandler defines a policy for rejected tasks. Different policies (AbortPolicy, CallerRunsPolicy) are strategies.
+
+        3.java.security.Signature / MessageDigest algorithms
+            You call MessageDigest.getInstance("SHA-256") — the selected algorithm is a strategy implementation.
+
+        4.java.nio.charset.CharsetEncoder / CharsetDecoder
+            Encoding/decoding algorithms (UTF-8, ISO-8859-1) are interchangeable strategies.
+
+        5.java.util.Formatter with different Locale
+            Changing Locale affects formatting behavior — strategy-like.
+
+        6.Collections.unmodifiableList / Collections.synchronizedList
+            These return wrapper implementations that change behavior — a decorator but the choice of wrapper at creation-time is strategy-like in how we choose behavior.
+            When you explain these in an interview, emphasize that Strategy encapsulates an algorithm and makes it pluggable, and point to Comparator as the canonical Java example.
+
+⭐ Strategy Design Pattern — In Simple Terms
+    Strategy = choosing an algorithm at runtime.
+    You keep the logic/algorithm separate from the main code, so you can swap different behaviors without modifying the core class.
+
+🍕 Super Simple Example (Human-friendly)
+    Imagine ordering pizza.
+    Sometimes:
+        1.You pay full price
+        2.You get 10% discount
+        3.You get Buy 1 Get 1
+    The billing method changes, but the pizza and the order don’t change.
+    So instead of writing:
+        if(discountType == 1) {...}
+        else if(discountType == 2) {...}
+        else if(discountType == 3) {...}
+    You do this instead:
+        order.setPricingStrategy(new BuyOneGetOneStrategy());
+    This switches the algorithm without touching the order code.
+
+🎯 Strategy in 1 Sentence
+    “Strategy allows you to change how something is done (algorithm) without changing what is being done (the object using it).”
+
+🔍 Key idea
+    You put different algorithms in separate classes and choose one at runtime.
+
+💡 Real-World Analogy
+Think of Google Maps navigation:
+    You choose:
+        🚗 Driving
+        🚶 Walking
+        🚲 Cycling
+        🚌 Public transport
+    Map data is the same.
+    Only the route calculation algorithm changes.
+    That’s Strategy Pattern.
+
+☕ Real Java Example (REAL Strategy Pattern in JDK)
+    ❗ Comparator in Collections.sort()
+        Collections.sort(list, Comparator.comparing(Person::getAge));
+    Here:
+    sort() = context
+    Comparator = strategy
+    different comparators = different strategies
+
+🧠 When to use Strategy (simple checklist)
+    Use it when you have:
+    ✔ different ways to do the same task
+    ✔ you want to avoid if-else or switch chains
+    ✔ you want to choose behavior at runtime
+    ✔ you want algorithms to be replaceable without changing the main class
+
+🔨 Tiny Code Example (VERY simple)
+    Strategy interface
+        interface PaymentStrategy {
+            void pay(int amount);
+        }
+    Concrete strategies
+        class CardPayment implements PaymentStrategy {
+            public void pay(int amount) { System.out.println("Paid by card: " + amount); }
+        }
+        class UpiPayment implements PaymentStrategy {
+            public void pay(int amount) { System.out.println("Paid via UPI: " + amount); }
+        }
+    Context
+        class Checkout {
+            private PaymentStrategy paymentStrategy;
+            public Checkout(PaymentStrategy strategy) {
+                this.paymentStrategy = strategy;
+            }
+            public void performPayment(int amount) {
+                paymentStrategy.pay(amount);
+            }
+        }
+    Client chooses the strategy
+        Checkout checkout = new Checkout(new UpiPayment());
+        checkout.performPayment(500);
+    Swap algorithm easily:
+        checkout = new Checkout(new CardPayment());
+        checkout.performPayment(500);
