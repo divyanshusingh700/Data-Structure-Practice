@@ -1,4 +1,6 @@
-class Solution {
+import java.util.*;
+
+class CourseSchedule2TopoDFS {
     Stack<Integer> ans;
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {

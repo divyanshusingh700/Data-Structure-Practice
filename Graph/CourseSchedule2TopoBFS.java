@@ -1,4 +1,6 @@
-class Solution {
+import java.util.*;
+
+class CourseSchedule2TopoBFS {
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         Queue<Integer> q = new LinkedList<>();
@@ -14,13 +16,14 @@ class Solution {
             adj.get(prereq).add(co);
         }
 
-        int[] indegree = new int[numCourses];
+        int[] indegree = new int[numCourses]; // number of incoming edges for node 
         int cnt = 0;
         for(int i = 0; i < numCourses; i++){
             for(int v: adj.get(i)){
                 indegree[v]++;
             }
         }
+        // we will first push out all those nodes which have indegree 0
         for(int i = 0; i < numCourses; i++){
             if(indegree[i] == 0){
                 cnt++;
