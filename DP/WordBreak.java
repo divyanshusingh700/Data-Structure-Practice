@@ -47,3 +47,22 @@ class SolutionSW {
     }
 
 }
+// bottom up
+class SolutionDP {
+    
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> dict = new HashSet<>(wordDict);
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for(int i = 0; i < s.length(); i++){
+            if(!dp[i])continue;
+            for(String word: dict){
+                if(dp[i] && s.startsWith(word, i)){
+                    dp[i + word.length()] = true;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+}
+
