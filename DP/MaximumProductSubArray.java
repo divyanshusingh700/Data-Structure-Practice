@@ -31,3 +31,26 @@ class SolutionPrefSuff {
         return mx;
     }
 }
+
+class SolutionKadane {
+    public int maxProduct(int[] nums) {
+        int curMax = nums[0];
+        int curMin = nums[0];
+        int globalMax = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            int x = nums[i];
+
+            int tempMax = Math.max(x, Math.max(curMax * x, curMin * x));// because min can turn to max
+            int tempMin = Math.min(x, Math.min(curMax * x, curMin * x));// because min can turn to max
+
+            curMax = tempMax;
+            curMin = tempMin;
+
+            globalMax = Math.max(globalMax, curMax);
+        }
+
+        return globalMax;
+    }
+}
+
