@@ -1,0 +1,34 @@
+Observer = “When one object changes, all the dependent objects should automatically get notified.”
+
+Think:
+    - One subject (publisher)
+    - Many observers (subscribers)
+Observers “subscribe” to the subject and get alerts whenever something happens.
+
+REAL-LIFE ANALOGY (EASIEST WAY)
+Think of YouTube subscription:
+    - You subscribe to a channel → you become an observer
+    - The channel uploads new video → subject changes
+    - You get a notification → observer gets updated
+
+YouTube does NOT call each subscriber manually — the observer pattern handles that.
+
+🧱 PARTICIPANTS
+Part	Role
+Subject  (Publisher)	Has data, maintains list of observers, notifies them
+Observer (Subscriber)	Wants updates whenever subject changes
+Concrete Subject	The actual publisher (e.g., StockMarket)
+Concrete Observer	Actual subscriber roles (e.g., MobileApp, EmailAlert)
+🔁 HOW IT WORKS (IN ENGLISH)
+    - Observers register themselves to the subject
+    - Something changes in the subject (new data/news/event)
+    - Subject notifies all observers by calling a method on them
+    - Observers react accordingly
+
+💡 WHEN TO USE THE OBSERVER PATTERN
+
+Use it when:
+✔ You want automatic updates whenever some data changes
+✔ You want loose coupling between publisher and subscriber
+✔ Many objects depend on a single object
+✔ You want a publish–subscribe mechanism
