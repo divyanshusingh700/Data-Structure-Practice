@@ -11,6 +11,7 @@ public class CountCodeActive {
             boolean isValid = true;
             if(code[i].length() == 0)isValid = false;
             for(char ch: code[i].toCharArray()){
+                // if(!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '_' || (ch - '0' >= 0 && ch - '0' <= 9))){
                 if(!( Character.isLetterOrDigit(ch) || ch == '_' )){
                     isValid = false;break;
                 }
