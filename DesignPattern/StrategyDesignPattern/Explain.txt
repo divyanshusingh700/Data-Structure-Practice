@@ -5,7 +5,7 @@ When to use Strategy
     4.When you want to test algorithms in isolation.
 
 Real Java SDK examples that use Strategy-like pattern
-    These are popular, interview-ready examples where Java uses the Strategy idea (encapsulate behavior in an object):
+    examples where Java uses the Strategy idea (encapsulate behavior in an object):
         1.java.util.Comparator<T> used by Collections.sort / Arrays.sort
             a.Clients (sorting algorithms) accept a Comparator that defines comparison behavior.
             b.Different Comparator implementations (by age, by name, reverse order) are strategies.

@@ -14,11 +14,11 @@ Think of YouTube subscription:
 YouTube does NOT call each subscriber manually — the observer pattern handles that.
 
 🧱 PARTICIPANTS
-Part	Role
-Subject  (Publisher)	Has data, maintains list of observers, notifies them
-Observer (Subscriber)	Wants updates whenever subject changes
-Concrete Subject	The actual publisher (e.g., StockMarket)
-Concrete Observer	Actual subscriber roles (e.g., MobileApp, EmailAlert)
+Part	                    Role
+Subject  (Publisher)	    Has data, maintains list of observers, notifies them
+Observer (Subscriber)	    Wants updates whenever subject changes
+Concrete Subject	        The actual publisher (e.g., StockMarket)
+Concrete Observer	        Actual subscriber roles (e.g., MobileApp, EmailAlert)
 🔁 HOW IT WORKS (IN ENGLISH)
     - Observers register themselves to the subject
     - Something changes in the subject (new data/news/event)

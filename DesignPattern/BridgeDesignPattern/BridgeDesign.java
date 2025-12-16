@@ -21,8 +21,8 @@ public class BridgeDesign {
         Device radio = new Radio();
         AdvancedRemote advRemote = new AdvancedRemote(radio);
         advRemote.togglePower();               // power on Radio
-        advRemote.powerOnWithVolume(50);        // ensure volume set to 50%
-        advRemote.mute();                       // mute Radio
+        advRemote.powerOnWithVolume(50); // ensure volume set to 50%
+        advRemote.mute(); // mute Radio
     }
 }
 
